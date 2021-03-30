@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\DependencyInjection;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DependencyInjection;
 
-use Acme\SyliusExamplePlugin\DependencyInjection\AcmeSyliusExampleExtension;
+use Setono\SyliusKlaviyoPlugin\DependencyInjection\SetonoSyliusKlaviyoExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyDependencyInjectionTest
  */
-final class AcmeSyliusExampleExtensionTest extends AbstractExtensionTestCase
+final class SetonoSyliusKlaviyoExtensionTest extends AbstractExtensionTestCase
 {
     protected function getContainerExtensions(): array
     {
         return [
-            new AcmeSyliusExampleExtension(),
+            new SetonoSyliusKlaviyoExtension(),
         ];
     }
 
@@ -33,6 +33,6 @@ final class AcmeSyliusExampleExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasParameter('acme_sylius_example.option', 'option_value');
+        $this->assertContainerBuilderHasParameter('setono_sylius_klaviyo.option', 'option_value');
     }
 }

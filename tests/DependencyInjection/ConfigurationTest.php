@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\DependencyInjection;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DependencyInjection;
 
-use Acme\SyliusExamplePlugin\DependencyInjection\Configuration;
+use Setono\SyliusKlaviyoPlugin\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
             [
                 [], // no values at all
             ],
-            'The child node "option" at path "acme_sylius_example" must be configured.'
+            'The child node "option" at path "setono_sylius_klaviyo" must be configured.'
         );
     }
 

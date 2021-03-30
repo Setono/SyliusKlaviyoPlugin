@@ -1,0 +1,2 @@
+setono_sylius_klaviyo:
+    resource: "@SetonoSyliusKlaviyoPlugin/Resources/config/routes.yaml"

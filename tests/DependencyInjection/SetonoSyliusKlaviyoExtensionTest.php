@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Setono\SyliusKlaviyoPlugin\DependencyInjection;
 
-use Setono\SyliusKlaviyoPlugin\DependencyInjection\SetonoSyliusKlaviyoExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Setono\SyliusKlaviyoPlugin\DependencyInjection\SetonoSyliusKlaviyoExtension;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyDependencyInjectionTest

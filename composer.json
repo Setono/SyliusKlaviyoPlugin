@@ -12,7 +12,9 @@
         "klaviyo/php-sdk": "^2.3",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
-        "symfony/http-kernel": "^4.4 || ^5.1.5"
+        "symfony/http-client": "^5.3",
+        "symfony/http-kernel": "^4.4 || ^5.1.5",
+        "symfony/messenger": "^4.4 || ^5.0"
     },
     "require-dev": {
         "api-platform/core": "^2.6",
@@ -30,7 +32,6 @@
         "symfony/debug-bundle": "^5.3",
         "symfony/dotenv": "^5.3",
         "symfony/intl": "^5.3",
-        "symfony/maker-bundle": "^1.33",
         "symfony/property-info": "^5.3",
         "symfony/serializer": "^5.3",
         "symfony/web-profiler-bundle": "^5.3",
@@ -64,7 +65,7 @@
             "psalm"
         ],
         "check-style": "ecs check",
-        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/Tests_Acme_SyliusExamplePlugin_Application_KernelTestDebugContainer.xml ]] || tests/Application/bin/console cache:warmup --env=test",
+        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/Tests_Setono_SyliusKlaviyoPlugin_Application_KernelTestDebugContainer.xml ]] || tests/Application/bin/console cache:warmup --env=test",
         "fix-style": "ecs check --fix",
         "phpunit": "phpunit"
     }

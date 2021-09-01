@@ -1,4 +1,4 @@
-# Setono SyliusKlaviyoPlugin
+# Setono Sylius Plugin Skeleton
 
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
@@ -7,16 +7,16 @@
 [![Code Coverage][ico-code-coverage]][link-code-coverage]
 
 [Setono](https://setono.com) have made a bunch of [plugins for Sylius](https://github.com/Setono), and we have some guidelines
-which we try to follow when developing plugins. These guidelines are used in this repository and it gives you a very
+which we try to follow when developing plugins. These guidelines are used in this repository, and it gives you a very
 solid base when developing plugins.
 
 Enjoy! 
 
 ## Quickstart
 
-1. Run `composer create-project setono/sylius-klaviyo-plugin:dev-master ProjectName`.
-
-2. From the plugin skeleton root directory, run the following commands:
+1. Run `composer create-project --prefer-source --no-install --remove-vcs setono/sylius-klaviyo-plugin:dev-master ProjectName` or just click the `Use this template` button at the right corner of this repository.
+2. Run `cd ProjectName && composer install`
+3. From the plugin skeleton root directory, run the following commands:
 
     ```bash
     $ php init
@@ -37,9 +37,9 @@ To be able to setup a plugin's database, remember to configure you database cred
 [ico-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/license
-[ico-github-actions]: https://github.com/Setono/SyliusKlaviyoPlugin/workflows/build/badge.svg
-[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusKlaviyoPlugin/branch/master/graph/badge.svg
+[ico-github-actions]: https://github.com/Setono/SyliusPluginSkeleton/workflows/build/badge.svg
+[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusPluginSkeleton/branch/master/graph/badge.svg
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-klaviyo-plugin
-[link-github-actions]: https://github.com/Setono/SyliusKlaviyoPlugin/actions
-[link-code-coverage]: https://codecov.io/gh/Setono/SyliusKlaviyoPlugin
+[link-github-actions]: https://github.com/Setono/SyliusPluginSkeleton/actions
+[link-code-coverage]: https://codecov.io/gh/Setono/SyliusPluginSkeleton

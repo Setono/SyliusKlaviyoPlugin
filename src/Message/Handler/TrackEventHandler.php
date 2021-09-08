@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\Message\Handler;
 
+use Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClientInterface;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 final class TrackEventHandler implements MessageHandlerInterface
 {
-    private SerializerInterface $serializer;
+    private TrackIdentifyClientInterface $client;
 
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(TrackIdentifyClientInterface $client)
     {
-        $this->serializer = $serializer;
+        $this->client = $client;
     }
 
     public function __invoke(TrackEvent $message): void
     {
+        $this->client->trackEvent($message->getEvent());
     }
 }

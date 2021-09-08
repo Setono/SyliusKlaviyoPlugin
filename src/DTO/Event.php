@@ -4,14 +4,33 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO;
 
-abstract class Event
+use Webmozart\Assert\Assert;
+
+final class Event
 {
-    public string $token;
+    /**
+     * This property is automatically populated when you send the event to Klaviyo
+     */
+    public ?string $token = null;
 
-    public string $name;
+    public string $event;
 
-    public function __construct(string $name)
+    public CustomerProperties $customerProperties;
+
+    public Properties $properties;
+
+    /**
+     * The time the event happened (UNIX timestamp)
+     */
+    public int $timestamp;
+
+    public function __construct(Properties $properties, CustomerProperties $customerProperties = null)
     {
-        $this->name = $name;
+        Assert::notNull($properties->event, 'You need to associate your properties with an event name, i.e. "Viewed Product"');
+
+        $this->event = $properties->event;
+        $this->customerProperties = $customerProperties ?? new CustomerProperties();
+        $this->properties = $properties;
+        $this->timestamp = time();
     }
 }

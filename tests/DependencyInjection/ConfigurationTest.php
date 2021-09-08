@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
             [
                 [], // no values at all
             ],
-            'The child node "option" at path "setono_sylius_klaviyo" must be configured.'
+            'The child config "public_token" under "setono_sylius_klaviyo" must be configured'
         );
     }
 
@@ -39,10 +39,10 @@ final class ConfigurationTest extends TestCase
     public function processed_value_contains_required_value(): void
     {
         $this->assertProcessedConfigurationEquals([
-            ['option' => 'first value'],
-            ['option' => 'last value'],
+            ['public_token' => 'first value'],
+            ['public_token' => 'last value'],
         ], [
-            'option' => 'last value',
+            'public_token' => 'last value',
         ]);
     }
 }

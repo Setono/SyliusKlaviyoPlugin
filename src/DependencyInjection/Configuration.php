@@ -20,11 +20,10 @@ final class Configuration implements ConfigurationInterface
          */
         $rootNode
             ->children()
-                ->scalarNode('option')
-                    ->info('This is an example configuration option')
+                ->scalarNode('public_token')
+                    ->info('Your public token')
                     ->isRequired()
                     ->cannotBeEmpty()
-                ->end()
         ;
 
         return $treeBuilder;

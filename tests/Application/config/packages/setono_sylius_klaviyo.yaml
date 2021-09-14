@@ -1,2 +1,2 @@
 setono_sylius_klaviyo:
-    token: token
+    public_token: token

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO;
 
-use Setono\SyliusKlaviyoPlugin\DTO\AddedToCart\Item;
-
 class AddedToCartProperties extends Properties
 {
     /** @psalm-readonly */

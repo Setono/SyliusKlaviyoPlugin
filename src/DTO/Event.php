@@ -28,9 +28,16 @@ final class Event
     {
         Assert::notNull($properties->event, 'You need to associate your properties with an event name, i.e. "Viewed Product"');
 
+        $now = new \DateTimeImmutable();
+
         $this->event = $properties->event;
         $this->customerProperties = $customerProperties ?? new CustomerProperties();
         $this->properties = $properties;
-        $this->timestamp = time();
+        $this->timestamp = $now->getTimestamp();
+
+        // See the documentation for event id here: https://help.klaviyo.com/hc/en-us/articles/115000751052-Klaviyo-API-Reference-Guide#reserved-event-properties11
+        // Instead of Klaviyo setting the event id to the timestamp, we instead set it to the timestamp including microseconds.
+        // This will make it less likely to clash with other events
+        $this->properties->eventId = $now->format('U.u');
     }
 }

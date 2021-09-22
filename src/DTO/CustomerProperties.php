@@ -6,6 +6,8 @@ namespace Setono\SyliusKlaviyoPlugin\DTO;
 
 class CustomerProperties
 {
+    public ?string $id = null;
+
     public ?string $email = null;
 
     public ?string $firstName = null;

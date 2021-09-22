@@ -24,10 +24,10 @@ final class EventTest extends DTOTestCase
             'token' => 'public_token',
             'event' => 'Viewed Product',
             'customer_properties' => [
-                '$consent' => []
+                '$consent' => [],
             ],
             'properties' => [
-                'Categories' => []
+                'Categories' => [],
             ],
             'time' => 1631103497,
         ];

@@ -10,6 +10,7 @@
     "require": {
         "php": ">=7.4",
         "klaviyo/php-sdk": "^2.3",
+        "setono/client-id-bundle": "^0.2.0",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
         "symfony/http-client": "^5.3",

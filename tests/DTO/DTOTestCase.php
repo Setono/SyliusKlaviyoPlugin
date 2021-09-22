@@ -45,7 +45,7 @@ abstract class DTOTestCase extends TestCase
     {
         $data = $this->getSerializer()->normalize($obj, null, [
             AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
-            'groups' => 'setono:sylius-klaviyo:event'
+            'groups' => 'setono:sylius-klaviyo:event',
         ]);
 
         self::assertIsArray($data);

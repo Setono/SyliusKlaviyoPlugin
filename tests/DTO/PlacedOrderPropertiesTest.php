@@ -46,13 +46,13 @@ final class PlacedOrderPropertiesTest extends DTOTestCase
             'DiscountCode' => 'Free Shipping',
             'DiscountValue' => 5.0,
             'Items' => [
-                ['ProductName' => 'Winnie the Pooh', 'Quantity' => 1, 'Categories' => []]
+                ['ProductName' => 'Winnie the Pooh', 'Quantity' => 1, 'Categories' => []],
             ],
             'BillingAddress' => [
-                'FirstName' => 'John'
+                'FirstName' => 'John',
             ],
             'ShippingAddress' => [
-                'FirstName' => 'Mary'
+                'FirstName' => 'Mary',
             ],
         ];
     }

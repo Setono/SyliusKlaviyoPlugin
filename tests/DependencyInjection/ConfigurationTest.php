@@ -7,6 +7,8 @@ namespace Tests\Setono\SyliusKlaviyoPlugin\DependencyInjection;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusKlaviyoPlugin\DependencyInjection\Configuration;
+use Setono\SyliusKlaviyoPlugin\Doctrine\ORM\MemberListRepository;
+use Setono\SyliusKlaviyoPlugin\Form\Type\MemberListType;
 use Setono\SyliusKlaviyoPlugin\Model\MemberList;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -64,9 +66,11 @@ final class ConfigurationTest extends TestCase
             'resources' => [
                 'member_list' => [
                     'classes' => [
-                        'model' => MemberList::class,
                         'controller' => ResourceController::class,
                         'factory' => Factory::class,
+                        'form' => MemberListType::class,
+                        'model' => MemberList::class,
+                        'repository' => MemberListRepository::class,
                     ],
                 ],
             ],

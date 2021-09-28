@@ -1,4 +1,8 @@
 setono_sylius_klaviyo:
+    form:
+        member_list:
+            klaviyo_id: Klaviyo id
+            name: Name
     menu:
         admin:
             main:

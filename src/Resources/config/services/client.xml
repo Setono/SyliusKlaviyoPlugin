@@ -2,6 +2,16 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+        <service id="Setono\SyliusKlaviyoPlugin\Client\RestClientInterface"
+                 alias="setono_sylius_klaviyo.client.rest"/>
+
+        <service id="setono_sylius_klaviyo.client.rest"
+                 class="Setono\SyliusKlaviyoPlugin\Client\RestClient">
+            <argument type="service" id="http_client"/>
+            <argument>https://a.klaviyo.com/api/v2</argument>
+            <argument>%setono_sylius_klaviyo.private_token%</argument>
+        </service>
+
         <service id="Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClientInterface"
                  alias="setono_sylius_klaviyo.client.track_identify"/>
 

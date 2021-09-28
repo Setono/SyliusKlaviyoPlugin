@@ -37,7 +37,7 @@ final class TrackIdentifyClientTest extends TestCase
         if (false !== $live) {
             $this->live = true;
 
-            $token = getenv('KLAVIYO_TOKEN');
+            $token = getenv('KLAVIYO_PUBLIC_TOKEN');
             if (false !== $token) {
                 $this->token = $token;
             }

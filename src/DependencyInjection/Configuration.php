@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DependencyInjection;
 
+use Setono\SyliusKlaviyoPlugin\Doctrine\ORM\MemberListRepository;
+use Setono\SyliusKlaviyoPlugin\Form\Type\MemberListType;
 use Setono\SyliusKlaviyoPlugin\Model\MemberList;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -65,9 +67,11 @@ final class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue(MemberList::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(MemberListType::class)->end()
+                                        ->scalarNode('model')->defaultValue(MemberList::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(MemberListRepository::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

@@ -25,5 +25,10 @@
                 <referencedMethod name="Symfony\Component\HttpKernel\Event\KernelEvent::isMasterRequest"/>
             </errorLevel>
         </DeprecatedMethod>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/DTO/Response"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
 </psalm>

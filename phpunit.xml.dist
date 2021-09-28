@@ -16,6 +16,7 @@
         <env name="APP_ENV" value="test"/>
         <env name="SHELL_VERBOSITY" value="-1"/>
         <env name="KLAVIYO_LIVE" value="0"/> <!-- Set to true and insert a token below to test live requests to Klaviyo API -->
-        <env name="KLAVIYO_TOKEN" value=""/> <!-- Insert your Klaviyo public token -->
+        <env name="KLAVIYO_PUBLIC_TOKEN" value=""/> <!-- Insert your Klaviyo public token -->
+        <env name="KLAVIYO_PRIVATE_TOKEN" value=""/> <!-- Insert your Klaviyo private token -->
     </php>
 </phpunit>

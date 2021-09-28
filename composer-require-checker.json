@@ -26,6 +26,7 @@
         "Sylius\\Component\\Core\\Model\\ProductInterface",
         "Sylius\\Component\\Core\\Model\\ProductVariantInterface",
         "Sylius\\Component\\Order\\Repository\\OrderRepositoryInterface",
-        "Sylius\\Component\\Product\\Resolver\\ProductVariantResolverInterface"
+        "Sylius\\Component\\Product\\Resolver\\ProductVariantResolverInterface",
+        "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent"
     ]
 }

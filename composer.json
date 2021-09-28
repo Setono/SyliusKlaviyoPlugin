@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.4",
+        "knplabs/knp-menu": "^3.2",
         "liip/imagine-bundle": "^2.6",
         "psr/event-dispatcher": "^1.0",
         "setono/client-id-bundle": "^0.2.0",

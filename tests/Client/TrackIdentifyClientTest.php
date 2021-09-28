@@ -50,6 +50,7 @@ final class TrackIdentifyClientTest extends TestCase
     public function it_tracks_event(): void
     {
         $eventProperties = new ViewedProductProperties();
+        $eventProperties->eventId = 'event_id';
         $eventProperties->productName = 'Black T-shirt';
         $eventProperties->price = 123.95;
         $eventProperties->compareAtPrice = 234.45;
@@ -83,7 +84,7 @@ final class TrackIdentifyClientTest extends TestCase
             self::assertSame('POST', $response->getRequestMethod());
             self::assertSame('https://a.klaviyo.com/api/track', $response->getRequestUrl());
             self::assertContains('Content-Type: application/x-www-form-urlencoded', $requestHeaders);
-            self::assertSame('data={"token":"public_token","event":"Viewed Product","customer_properties":{"$email":"test@klaviyo.com","$consent":[]},"properties":{"ProductName":"Black T-shirt","SKU":"BLACK-T-SHIRT","Categories":["T-shirts"],"ImageURL":"https:\/\/example.com\/images\/black-t-shirt.jpg","URL":"https:\/\/example.com\/t-shirts\/black-t-shirt.html","Brand":"Diesel","Price":123.95,"CompareAtPrice":234.45},"time":1631101604}', $requestBody);
+            self::assertSame('data={"token":"public_token","event":"Viewed Product","customer_properties":{"$email":"test@klaviyo.com","$consent":[]},"properties":{"ProductName":"Black T-shirt","SKU":"BLACK-T-SHIRT","Categories":["T-shirts"],"ImageURL":"https:\/\/example.com\/images\/black-t-shirt.jpg","URL":"https:\/\/example.com\/t-shirts\/black-t-shirt.html","Brand":"Diesel","Price":123.95,"CompareAtPrice":234.45,"$event_id":"event_id"},"time":1631101604}', $requestBody);
         }
     }
 

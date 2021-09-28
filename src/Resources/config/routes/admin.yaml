@@ -1,1 +1,13 @@
-# TODO Add your admin routes here
+setono_sylius_klaviyo_admin_member_list:
+    resource: |
+        section: admin
+        alias: setono_sylius_klaviyo.member_list
+        templates: "@SyliusAdmin\\Crud"
+        redirect: index
+        permission: true
+        grid: setono_sylius_klaviyo_admin_member_list
+        vars:
+            all:
+                header: setono_sylius_klaviyo.ui.member_list_header
+                subheader: setono_sylius_klaviyo.ui.member_list_subheader
+    type: sylius.resource

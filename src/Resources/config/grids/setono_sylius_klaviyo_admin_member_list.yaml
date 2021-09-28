@@ -1,0 +1,11 @@
+sylius_grid:
+    grids:
+        setono_sylius_klaviyo_admin_member_list:
+            driver:
+                options:
+                    class: "%setono_sylius_klaviyo.model.member_list.class%"
+            limits: [50, 100, 250, 500, 1000]
+            fields:
+                name:
+                    type: string
+                    label: sylius.ui.name

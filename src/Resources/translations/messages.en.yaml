@@ -1,0 +1,10 @@
+setono_sylius_klaviyo:
+    menu:
+        admin:
+            main:
+                marketing:
+                    member_lists: Klaviyo lists
+    ui:
+        member_list_header: Lists
+        member_list_subheader: Manage your Klaviyo lists
+        member_lists: Lists

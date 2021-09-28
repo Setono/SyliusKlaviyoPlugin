@@ -1,3 +1,6 @@
+imports:
+    - { resource: "@SetonoSyliusKlaviyoPlugin/Resources/config/grids/setono_sylius_klaviyo_admin_member_list.yaml" }
+
 framework:
     messenger:
         buses:

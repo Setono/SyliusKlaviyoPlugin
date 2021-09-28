@@ -8,7 +8,9 @@ use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusKlaviyoPlugin\DependencyInjection\Configuration;
 use Setono\SyliusKlaviyoPlugin\Model\MemberList;
+use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use Sylius\Component\Resource\Factory\Factory;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyConfigTest
@@ -63,6 +65,8 @@ final class ConfigurationTest extends TestCase
                 'member_list' => [
                     'classes' => [
                         'model' => MemberList::class,
+                        'controller' => ResourceController::class,
+                        'factory' => Factory::class,
                     ],
                 ],
             ],

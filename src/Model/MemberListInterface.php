@@ -6,16 +6,9 @@ namespace Setono\SyliusKlaviyoPlugin\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface MemberListInterface extends ResourceInterface
+interface MemberListInterface extends ResourceInterface, KlaviyoResourceInterface
 {
     public function getId(): ?int;
-
-    /**
-     * This is the list id in Klaviyo
-     */
-    public function getKlaviyoId(): ?string;
-
-    public function setKlaviyoId(string $klaviyoId): void;
 
     public function getName(): ?string;
 

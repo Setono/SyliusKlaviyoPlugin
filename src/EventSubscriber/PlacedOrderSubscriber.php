@@ -4,23 +4,19 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\OrderedProductProperties;
 use Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
-use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
-use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * This class will populate the properties for both the 'Placed Order' event and the 'Ordered Product' events

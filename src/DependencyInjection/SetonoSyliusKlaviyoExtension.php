@@ -16,12 +16,13 @@ final class SetonoSyliusKlaviyoExtension extends Extension
         /**
          * @psalm-suppress PossiblyNullArgument
          *
-         * @var array{public_token: string} $config
+         * @var array{credentials: array{public_token: string, private_token: string}} $config
          */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $container->setParameter('setono_sylius_klaviyo.public_token', $config['public_token']);
+        $container->setParameter('setono_sylius_klaviyo.public_token', $config['credentials']['public_token']);
+        $container->setParameter('setono_sylius_klaviyo.private_token', $config['credentials']['private_token']);
 
         $loader->load('services.xml');
     }

@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
             [
                 [], // no values at all
             ],
-            'The child config "public_token" under "setono_sylius_klaviyo" must be configured'
+            'The child config "credentials" under "setono_sylius_klaviyo" must be configured.'
         );
     }
 
@@ -39,10 +39,23 @@ final class ConfigurationTest extends TestCase
     public function processed_value_contains_required_value(): void
     {
         $this->assertProcessedConfigurationEquals([
-            ['public_token' => 'first value'],
-            ['public_token' => 'last value'],
+            [
+                'credentials' => [
+                    'public_token' => 'first value',
+                    'private_token' => 'first value',
+                ],
+            ],
+            [
+                'credentials' => [
+                    'public_token' => 'last value',
+                    'private_token' => 'last value',
+                ],
+            ],
         ], [
-            'public_token' => 'last value',
+            'credentials' => [
+                'public_token' => 'last value',
+                'private_token' => 'last value',
+            ],
         ]);
     }
 }

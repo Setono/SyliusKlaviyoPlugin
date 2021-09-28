@@ -15,15 +15,22 @@ final class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->getRootNode();
 
         /**
-         * @psalm-suppress MixedMethodCall
-         * @psalm-suppress PossiblyUndefinedMethod
+         * @psalm-suppress MixedMethodCall,PossiblyUndefinedMethod,PossiblyNullReference
          */
         $rootNode
             ->children()
-                ->scalarNode('public_token')
-                    ->info('Your public token')
+                ->arrayNode('credentials')
                     ->isRequired()
-                    ->cannotBeEmpty()
+                    ->children()
+                        ->scalarNode('public_token')
+                            ->info('Your public token')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('private_token')
+                            ->info('Your public token')
+                            ->isRequired()
+                            ->cannotBeEmpty()
         ;
 
         return $treeBuilder;

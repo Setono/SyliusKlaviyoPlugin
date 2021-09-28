@@ -2,4 +2,6 @@ imports:
     - { resource: "@SetonoSyliusKlaviyoPlugin/Resources/config/app/config.yaml" }
 
 setono_sylius_klaviyo:
-    public_token: "%env(KLAVIYO_TOKEN)%"
+    credentials:
+        public_token: "%env(KLAVIYO_PUBLIC_TOKEN)%"
+        private_token: "%env(KLAVIYO_PRIVATE_TOKEN)%"

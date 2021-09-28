@@ -22,7 +22,10 @@ final class SetonoSyliusKlaviyoExtensionTest extends AbstractExtensionTestCase
     protected function getMinimalConfiguration(): array
     {
         return [
-            'public_token' => 'option_value',
+            'credentials' => [
+                'public_token' => 'public_token',
+                'private_token' => 'private_token',
+            ],
         ];
     }
 
@@ -33,6 +36,7 @@ final class SetonoSyliusKlaviyoExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasParameter('setono_sylius_klaviyo.public_token', 'option_value');
+        $this->assertContainerBuilderHasParameter('setono_sylius_klaviyo.public_token', 'public_token');
+        $this->assertContainerBuilderHasParameter('setono_sylius_klaviyo.private_token', 'private_token');
     }
 }

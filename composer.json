@@ -10,12 +10,20 @@
     "require": {
         "php": ">=7.4",
         "klaviyo/php-sdk": "^2.3",
+        "liip/imagine-bundle": "^2.6",
+        "psr/event-dispatcher": "^1.0",
+        "setono/client-id-contracts": "^0.2",
         "setono/client-id-bundle": "^0.2.0",
+        "sylius/resource-bundle": "^1.6",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
+        "symfony/event-dispatcher": "^4.4 || ^5.0",
         "symfony/http-client": "^5.3",
+        "symfony/http-client-contracts": "^2.4",
         "symfony/http-kernel": "^4.4 || ^5.1.5",
-        "symfony/messenger": "^4.4 || ^5.0"
+        "symfony/messenger": "^4.4 || ^5.0",
+        "symfony/routing": "^4.4 || ^5.0",
+        "symfony/serializer": "^4.4 || ^5.0"
     },
     "require-dev": {
         "api-platform/core": "^2.6",
@@ -34,7 +42,6 @@
         "symfony/dotenv": "^5.3",
         "symfony/intl": "^5.3",
         "symfony/property-info": "^5.3",
-        "symfony/serializer": "^5.3",
         "symfony/web-profiler-bundle": "^5.3",
         "symfony/webpack-encore-bundle": "^1.12"
     },

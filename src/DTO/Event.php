@@ -35,9 +35,11 @@ final class Event
         $this->properties = $properties;
         $this->timestamp = $now->getTimestamp();
 
-        // See the documentation for event id here: https://help.klaviyo.com/hc/en-us/articles/115000751052-Klaviyo-API-Reference-Guide#reserved-event-properties11
-        // Instead of Klaviyo setting the event id to the timestamp, we instead set it to the timestamp including microseconds.
-        // This will make it less likely to clash with other events
-        $this->properties->eventId = $now->format('U.u');
+        if (null === $this->properties->eventId) {
+            // See the documentation for event id here: https://help.klaviyo.com/hc/en-us/articles/115000751052-Klaviyo-API-Reference-Guide#reserved-event-properties11
+            // Instead of Klaviyo setting the event id to the timestamp, we instead set it to the timestamp including microseconds.
+            // This will make it less likely to clash with other events
+            $this->properties->eventId = $now->format('U.u');
+        }
     }
 }

@@ -87,7 +87,11 @@ final class ViewedProductSubscriber implements EventSubscriberInterface
         $event = $this->eventFactory->create($properties);
 
         // then we allow plugin users to easily hook into the population of all of these properties
-        $this->eventDispatcher->dispatch(new PropertiesArePopulatedEvent($event));
+        $this->eventDispatcher->dispatch(new PropertiesArePopulatedEvent($event, [
+            'channel' => $channel ?? null,
+            'product' => $product,
+            'productVariant' => $productVariant,
+        ]));
 
         // and finally we're ready to send the event
         $this->commandBus->dispatch(new TrackEvent($event));

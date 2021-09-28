@@ -11,7 +11,10 @@ final class EventTest extends DTOTestCase
 {
     protected function getDTO(): Event
     {
-        $event = new Event(new ViewedProductProperties());
+        $properties = new ViewedProductProperties();
+        $properties->eventId = 'event_id';
+
+        $event = new Event($properties);
         $event->token = 'public_token';
         $event->timestamp = 1631103497;
 
@@ -28,6 +31,7 @@ final class EventTest extends DTOTestCase
             ],
             'properties' => [
                 'Categories' => [],
+                '$event_id' => 'event_id',
             ],
             'time' => 1631103497,
         ];

@@ -6,9 +6,15 @@ namespace Setono\SyliusKlaviyoPlugin\DTO;
 
 use Sylius\Component\Core\Model\OrderItemInterface;
 
-final class Item
+/**
+ * Docs: https://help.klaviyo.com/hc/en-us/articles/115005082927#ordered-product8
+ */
+class OrderedProductProperties extends Properties
 {
-    use MoneyFormatterTrait;
+    /** @psalm-readonly */
+    public ?string $event = 'Ordered Product';
+
+    public ?string $orderId = null;
 
     public ?string $productId = null;
 
@@ -18,10 +24,6 @@ final class Item
 
     public int $quantity = 1;
 
-    public ?float $itemPrice = null;
-
-    public ?float $rowTotal = null;
-
     public ?string $productUrl = null;
 
     public ?string $imageUrl = null;
@@ -29,11 +31,18 @@ final class Item
     /** @var array<array-key, string> */
     public array $categories = [];
 
-    public ?string $brand = null;
+    public ?string $productBrand = null;
 
     public static function createFromOrderItem(OrderItemInterface $orderItem): self
     {
         $obj = new self();
+        $obj->value = $orderItem->getTotal();
+        $obj->quantity = $orderItem->getQuantity();
+
+        $order = $orderItem->getOrder();
+        if (null !== $order) {
+            $obj->orderId = $order->getNumber();
+        }
 
         $variant = $orderItem->getVariant();
         if (null !== $variant) {
@@ -48,10 +57,6 @@ final class Item
                 $obj->categories[] = (string) $taxon->getName();
             }
         }
-
-        $obj->quantity = $orderItem->getQuantity();
-        $obj->itemPrice = self::formatAmount($orderItem->getUnitPrice());
-        $obj->rowTotal = $orderItem->getTotal();
 
         return $obj;
     }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO;
 
+use Sylius\Component\Core\Model\OrderInterface;
+
 class PlacedOrderProperties extends Properties
 {
     /** @psalm-readonly */
@@ -35,5 +37,29 @@ class PlacedOrderProperties extends Properties
     {
         $this->billingAddress = new Address();
         $this->shippingAddress = new Address();
+    }
+
+    public function populateFromOrder(OrderInterface $order): void
+    {
+        $this->eventId = $order->getNumber();
+
+        foreach ($order->getItems() as $item) {
+            $this->items[] = Item::createFromOrderItem($item);
+            $this->itemNames[] = (string) $item->getVariantName();
+        }
+
+        $billingAddress = $order->getBillingAddress();
+        if (null !== $billingAddress) {
+            $this->billingAddress = Address::createFromAddress($billingAddress);
+        }
+        $shippingAddress = $order->getShippingAddress();
+        if (null !== $shippingAddress) {
+            $this->shippingAddress = Address::createFromAddress($shippingAddress);
+        }
+
+        $promotionCoupon = $order->getPromotionCoupon();
+        if (null !== $promotionCoupon) {
+            $this->discountCode = $promotionCoupon->getCode();
+        }
     }
 }

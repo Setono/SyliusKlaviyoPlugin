@@ -7,6 +7,8 @@ namespace Tests\Setono\SyliusKlaviyoPlugin\DependencyInjection;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusKlaviyoPlugin\DependencyInjection\Configuration;
+use Setono\SyliusKlaviyoPlugin\Model\MemberList;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 /**
  * See examples of tests and configuration options here: https://github.com/SymfonyTest/SymfonyConfigTest
@@ -55,6 +57,14 @@ final class ConfigurationTest extends TestCase
             'credentials' => [
                 'public_token' => 'last value',
                 'private_token' => 'last value',
+            ],
+            'driver' => SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
+            'resources' => [
+                'member_list' => [
+                    'classes' => [
+                        'model' => MemberList::class,
+                    ],
+                ],
             ],
         ]);
     }

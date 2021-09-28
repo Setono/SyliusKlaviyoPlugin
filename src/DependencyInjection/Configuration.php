@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DependencyInjection;
 
+use Setono\SyliusKlaviyoPlugin\Model\MemberList;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -19,6 +22,9 @@ final class Configuration implements ConfigurationInterface
          */
         $rootNode
             ->children()
+                ->scalarNode('driver')
+                    ->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)
+                ->end()
                 ->arrayNode('credentials')
                     ->isRequired()
                     ->children()
@@ -33,6 +39,38 @@ final class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
         ;
 
+        $this->addResourcesSection($rootNode);
+
         return $treeBuilder;
+    }
+
+    private function addResourcesSection(ArrayNodeDefinition $node): void
+    {
+        /**
+         * @psalm-suppress MixedMethodCall
+         * @psalm-suppress PossiblyUndefinedMethod
+         * @psalm-suppress PossiblyNullReference
+         */
+        $node
+            ->children()
+                ->arrayNode('resources')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('member_list')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(MemberList::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

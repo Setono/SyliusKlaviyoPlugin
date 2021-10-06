@@ -8,6 +8,7 @@
             <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="sylius.repository.order"/>
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
 
             <tag name="kernel.event_subscriber"/>
         </service>
@@ -21,6 +22,15 @@
             <argument type="service" id="sylius.product_variant_resolver.default"/>
             <argument type="service" id="sylius.context.channel"/>
             <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="setono_sylius_klaviyo.event_subscriber.save_email"
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\SaveEmailSubscriber">
+            <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
+            <argument>%setono_sylius_klaviyo.email_cookie_name%</argument>
 
             <tag name="kernel.event_subscriber"/>
         </service>

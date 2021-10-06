@@ -4,11 +4,13 @@
     <imports>
         <import resource="services/client.xml"/>
         <import resource="services/command.xml"/>
+        <import resource="services/context.xml"/>
         <import resource="services/dto.xml"/>
         <import resource="services/event_subscriber.xml"/>
         <import resource="services/form.xml"/>
         <import resource="services/menu.xml"/>
         <import resource="services/message.xml"/>
+        <import resource="services/strategy.xml"/>
         <import resource="services/synchronizer.xml"/>
     </imports>
 </container>

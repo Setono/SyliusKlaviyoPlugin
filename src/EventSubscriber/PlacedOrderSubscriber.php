@@ -10,6 +10,7 @@ use Setono\SyliusKlaviyoPlugin\DTO\OrderedProductProperties;
 use Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
+use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
@@ -32,16 +33,20 @@ final class PlacedOrderSubscriber implements EventSubscriberInterface
 
     private OrderRepositoryInterface $orderRepository;
 
+    private TrackingStrategyInterface $trackingStrategy;
+
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
         EventDispatcherInterface $eventDispatcher,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        TrackingStrategyInterface $trackingStrategy
     ) {
         $this->commandBus = $commandBus;
         $this->eventFactory = $eventFactory;
         $this->eventDispatcher = $eventDispatcher;
         $this->orderRepository = $orderRepository;
+        $this->trackingStrategy = $trackingStrategy;
     }
 
     public static function getSubscribedEvents(): array
@@ -53,6 +58,10 @@ final class PlacedOrderSubscriber implements EventSubscriberInterface
 
     public function track(RequestEvent $requestEvent): void
     {
+        if (!$this->trackingStrategy->track()) {
+            return;
+        }
+
         $order = $this->resolveOrder($requestEvent);
         if (null === $order) {
             return;

@@ -15,8 +15,13 @@
         "string",
         "true",
         "void",
+        "Sylius\\Bundle\\ChannelBundle\\Form\\Type\\ChannelChoiceType",
         "Sylius\\Bundle\\CoreBundle\\Application\\SyliusPluginTrait",
+        "Sylius\\Bundle\\CoreBundle\\Form\\Type\\Customer\\CustomerCheckoutGuestType",
+        "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent",
         "Sylius\\Component\\Channel\\Context\\ChannelContextInterface",
+        "Sylius\\Component\\Channel\\Model\\ChannelInterface",
+        "Sylius\\Component\\Channel\\Model\\ChannelsAwareInterface",
         "Sylius\\Component\\Core\\Model\\AddressInterface",
         "Sylius\\Component\\Core\\Model\\ChannelInterface",
         "Sylius\\Component\\Core\\Model\\ImageInterface",
@@ -25,12 +30,9 @@
         "Sylius\\Component\\Core\\Model\\OrderItemInterface",
         "Sylius\\Component\\Core\\Model\\ProductInterface",
         "Sylius\\Component\\Core\\Model\\ProductVariantInterface",
+        "Sylius\\Component\\Core\\Repository\\CustomerRepositoryInterface",
+        "Sylius\\Component\\Customer\\Model\\CustomerInterface",
         "Sylius\\Component\\Order\\Repository\\OrderRepositoryInterface",
-        "Sylius\\Component\\Product\\Resolver\\ProductVariantResolverInterface",
-        "Sylius\\Bundle\\UiBundle\\Menu\\Event\\MenuBuilderEvent",
-        "Sylius\\Bundle\\ChannelBundle\\Form\\Type\\ChannelChoiceType",
-        "Sylius\\Component\\Channel\\Model\\ChannelInterface",
-        "Sylius\\Component\\Channel\\Model\\ChannelsAwareInterface",
-        "Sylius\\Bundle\\CoreBundle\\Form\\Type\\Customer\\CustomerCheckoutGuestType"
+        "Sylius\\Component\\Product\\Resolver\\ProductVariantResolverInterface"
     ]
 }

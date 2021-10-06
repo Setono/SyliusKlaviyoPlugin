@@ -35,4 +35,20 @@ final class RestClient implements RestClientInterface
             ]
         )->toArray();
     }
+
+    public function post(string $endpoint, array $data): array
+    {
+        $endpoint = trim($endpoint, '/');
+
+        return $this->httpClient->request(
+            'POST',
+            sprintf('%s/%s?api_key=%s', $this->baseUri, $endpoint, $this->token),
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ],
+                'json' => $data,
+            ]
+        )->toArray();
+    }
 }

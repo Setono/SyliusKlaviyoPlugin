@@ -26,6 +26,11 @@
                 <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
             </errorLevel>
         </DeprecatedMethod>
+        <PluginIssue name="QueryBuilderSetParameter">
+            <errorLevel type="suppress">
+                <directory name="src/Doctrine/ORM"/>
+            </errorLevel>
+        </PluginIssue>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="src/DTO/Response"/>

@@ -8,5 +8,13 @@
 
             <tag name="messenger.message_handler"/>
         </service>
+
+        <service id="setono_sylius_klaviyo.message.handler.subscribe_customer"
+                 class="Setono\SyliusKlaviyoPlugin\Message\Handler\SubscribeCustomerHandler">
+            <argument type="service" id="setono_sylius_klaviyo.client.rest"/>
+            <argument type="service" id="sylius.repository.customer"/>
+
+            <tag name="messenger.message_handler"/>
+        </service>
     </services>
 </container>

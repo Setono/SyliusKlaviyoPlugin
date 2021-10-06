@@ -10,6 +10,7 @@ use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\ViewedProductProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
+use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -37,6 +38,8 @@ final class ViewedProductSubscriber implements EventSubscriberInterface
 
     private EventDispatcherInterface $eventDispatcher;
 
+    private TrackingStrategyInterface $trackingStrategy;
+
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
@@ -44,7 +47,8 @@ final class ViewedProductSubscriber implements EventSubscriberInterface
         CacheManager $cacheManager,
         ProductVariantResolverInterface $productVariantResolver,
         ChannelContextInterface $channelContext,
-        EventDispatcherInterface $eventDispatcher
+        EventDispatcherInterface $eventDispatcher,
+        TrackingStrategyInterface $trackingStrategy
     ) {
         $this->commandBus = $commandBus;
         $this->eventFactory = $eventFactory;
@@ -53,6 +57,7 @@ final class ViewedProductSubscriber implements EventSubscriberInterface
         $this->productVariantResolver = $productVariantResolver;
         $this->channelContext = $channelContext;
         $this->eventDispatcher = $eventDispatcher;
+        $this->trackingStrategy = $trackingStrategy;
     }
 
     public static function getSubscribedEvents(): array
@@ -64,6 +69,10 @@ final class ViewedProductSubscriber implements EventSubscriberInterface
 
     public function track(ResourceControllerEvent $resourceControllerEvent): void
     {
+        if (!$this->trackingStrategy->track()) {
+            return;
+        }
+
         /** @var ProductInterface|mixed $product */
         $product = $resourceControllerEvent->getSubject();
         Assert::isInstanceOf($product, ProductInterface::class);

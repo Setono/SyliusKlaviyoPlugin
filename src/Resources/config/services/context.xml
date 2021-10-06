@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_klaviyo.context.default_email_context"
+                 class="Setono\SyliusKlaviyoPlugin\Context\DefaultEmailContext"/>
+
+        <service id="setono_sylius_klaviyo.context.cookie_based_email_context"
+                 class="Setono\SyliusKlaviyoPlugin\Context\CookieBasedEmailContext"
+                 decorates="setono_sylius_klaviyo.context.default_email_context" decoration-priority="128">
+            <argument type="service" id="setono_sylius_klaviyo.context.cookie_based_email_context.inner"/>
+            <argument type="service" id="request_stack"/>
+            <argument>%setono_sylius_klaviyo.email_cookie_name%</argument>
+        </service>
+
+        <service id="setono_sylius_klaviyo.context.cached_email_context"
+                 class="Setono\SyliusKlaviyoPlugin\Context\CachedEmailContext"
+                 decorates="setono_sylius_klaviyo.context.default_email_context" decoration-priority="64">
+            <argument type="service" id="setono_sylius_klaviyo.context.cached_email_context.inner"/>
+        </service>
+    </services>
+</container>

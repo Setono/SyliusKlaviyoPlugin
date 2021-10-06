@@ -23,11 +23,13 @@
         <DeprecatedMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Symfony\Component\HttpKernel\Event\KernelEvent::isMasterRequest"/>
+                <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
             </errorLevel>
         </DeprecatedMethod>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="src/DTO/Response"/>
+                <file name="src/Context/CachedEmailContext.php"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>

@@ -5,6 +5,8 @@
         <service id="setono_sylius_klaviyo.dto.factory.event"
                  class="Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactory">
             <argument type="service" id="setono_client_id.provider.default_client_id"/>
+            <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
         </service>
     </services>
 </container>

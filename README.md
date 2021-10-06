@@ -37,9 +37,9 @@ To be able to setup a plugin's database, remember to configure you database cred
 [ico-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/license
-[ico-github-actions]: https://github.com/Setono/SyliusPluginSkeleton/workflows/build/badge.svg
-[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusPluginSkeleton/branch/master/graph/badge.svg
+[ico-github-actions]: https://github.com/Setono/SyliusKlaviyoPlugin/workflows/build/badge.svg
+[ico-code-coverage]: https://codecov.io/gh/Setono/SyliusKlaviyoPlugin/branch/master/graph/badge.svg
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-klaviyo-plugin
-[link-github-actions]: https://github.com/Setono/SyliusPluginSkeleton/actions
-[link-code-coverage]: https://codecov.io/gh/Setono/SyliusPluginSkeleton
+[link-github-actions]: https://github.com/Setono/SyliusKlaviyoPlugin/actions
+[link-code-coverage]: https://codecov.io/gh/Setono/SyliusKlaviyoPlugin

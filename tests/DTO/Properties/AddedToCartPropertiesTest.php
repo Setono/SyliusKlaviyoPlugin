@@ -14,7 +14,7 @@ final class AddedToCartPropertiesTest extends DTOTestCase
 {
     protected function getDTO(): AddedToCartProperties
     {
-        $properties = new AddedToCartProperties();
+        $properties = $this->propertiesFactory->create(AddedToCartProperties::class);
         $properties->addedItemProductName = 'A Tale of Two Cities';
         $properties->addedItemProductId = '1112';
         $properties->addedItemSku = 'TALEOFTWO';

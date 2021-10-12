@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-class CustomerProperties
+class CustomerProperties extends Base
 {
     public ?string $id = null;
 

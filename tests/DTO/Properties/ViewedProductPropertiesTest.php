@@ -14,7 +14,7 @@ final class ViewedProductPropertiesTest extends DTOTestCase
 {
     protected function getDTO(): ViewedProductProperties
     {
-        $properties = new ViewedProductProperties();
+        $properties = $this->propertiesFactory->create(ViewedProductProperties::class);
         $properties->value = 100.50;
         $properties->eventId = '32f5ba0c-a869-42df-b5bc-56b9fd141f7d';
         $properties->productName = 'Black T-shirt';

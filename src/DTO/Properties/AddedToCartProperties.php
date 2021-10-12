@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Webmozart\Assert\Assert;
 
 class AddedToCartProperties extends Properties
 {
@@ -44,6 +46,9 @@ class AddedToCartProperties extends Properties
         $variant = $orderItem->getVariant();
         $product = $orderItem->getProduct();
 
+        // because of this bug: https://github.com/Sylius/Sylius/issues/9407 we can't just get the order from the order item
+        $order = $this->serviceLocator->get('sylius.context.cart')->getCart();
+
         $this->addedItemProductName = $orderItem->getVariantName();
         $this->addedItemPrice = self::formatAmount($orderItem->getFullDiscountedUnitPrice());
         $this->addedItemQuantity = $orderItem->getQuantity();
@@ -64,14 +69,33 @@ class AddedToCartProperties extends Properties
             }
 
             $this->addedItemCategories = array_unique($this->addedItemCategories);
-        }
-    }
 
-    public function populateFromOrder(OrderInterface $order): void
-    {
+            // populate product url
+            $this->addedItemUrl = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
+                'slug' => $product->getSlug(),
+            ], UrlGeneratorInterface::ABSOLUTE_URL);
+
+            // populate image url
+            $images = $product->getImages();
+
+            if ($images->count() === 0) {
+                return;
+            }
+
+            /** @var ImageInterface|mixed $image */
+            $image = $images->first();
+            Assert::isInstanceOf($image, ImageInterface::class);
+
+            $this->addedItemImageUrl = $this->serviceLocator->get('liip_imagine.cache.manager')->getBrowserPath(
+                (string) $image->getPath(),
+                'sylius_shop_product_large_thumbnail'
+            );
+        }
+
+        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
             $this->itemNames[] = (string) $item->getVariantName();
-            $this->items[] = Item::createFromOrderItem($item);
+            $this->items[] = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Item::class, $item);
         }
     }
 }

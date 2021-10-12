@@ -6,7 +6,26 @@
                  class="Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactory">
             <argument type="service" id="setono_client_id.provider.default_client_id"/>
             <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
-            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
+        </service>
+
+        <service id="setono_sylius_klaviyo.dto.properties.factory.properties"
+                 class="Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactory">
+            <argument type="service" id="setono_sylius_klaviyo.dto.properties.service_locator"/>
+        </service>
+
+        <service id="setono_sylius_klaviyo.dto.properties.service_locator"
+                 class="Symfony\Component\DependencyInjection\ServiceLocator">
+            <argument type="collection">
+                <argument type="service" id="liip_imagine.cache.manager"/>
+                <argument type="service" id="router"/>
+                <argument type="service" id="sylius.context.cart"/>
+                <argument type="service" id="sylius.context.channel"/>
+                <argument type="service" id="sylius.product_variant_resolver.default"/>
+
+            </argument>
+
+            <tag name="container.service_locator"/>
         </service>
     </services>
 </container>

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
 
 use PHPUnit\Framework\TestCase;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactory;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
@@ -18,6 +21,13 @@ use Symfony\Component\Serializer\Serializer;
 abstract class DTOTestCase extends TestCase
 {
     private ?Serializer $serializer = null;
+
+    protected PropertiesFactoryInterface $propertiesFactory;
+
+    protected function setUp(): void
+    {
+        $this->propertiesFactory = new PropertiesFactory(new Container());
+    }
 
     protected function getSerializer(): Serializer
     {

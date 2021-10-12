@@ -6,6 +6,7 @@ namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\PlacedOrderProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
@@ -23,30 +24,20 @@ use Symfony\Component\Messenger\MessageBusInterface;
  * This class will populate the properties for both the 'Placed Order' event and the 'Ordered Product' events
  * Documentation for this is found here: https://help.klaviyo.com/hc/en-us/articles/115005082927#placed-order7
  */
-final class PlacedOrderSubscriber implements EventSubscriberInterface
+final class PlacedOrderSubscriber extends AbstractEventSubscriber
 {
-    private MessageBusInterface $commandBus;
-
-    private EventFactoryInterface $eventFactory;
-
-    private EventDispatcherInterface $eventDispatcher;
-
     private OrderRepositoryInterface $orderRepository;
-
-    private TrackingStrategyInterface $trackingStrategy;
 
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
+        PropertiesFactoryInterface $propertiesFactory,
         EventDispatcherInterface $eventDispatcher,
-        OrderRepositoryInterface $orderRepository,
-        TrackingStrategyInterface $trackingStrategy
+        TrackingStrategyInterface $trackingStrategy,
+        OrderRepositoryInterface $orderRepository
     ) {
-        $this->commandBus = $commandBus;
-        $this->eventFactory = $eventFactory;
-        $this->eventDispatcher = $eventDispatcher;
+        parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy);
         $this->orderRepository = $orderRepository;
-        $this->trackingStrategy = $trackingStrategy;
     }
 
     public static function getSubscribedEvents(): array
@@ -77,8 +68,7 @@ final class PlacedOrderSubscriber implements EventSubscriberInterface
     private function handlePlacedOrderEvent(OrderInterface $order): void
     {
         // here we set some defaults
-        $properties = new PlacedOrderProperties();
-        $properties->populateFromOrder($order);
+        $properties = $this->propertiesFactory->create(PlacedOrderProperties::class, $order);
 
         // then we create the event that will be sent to Klaviyo
         $event = $this->eventFactory->create($properties);

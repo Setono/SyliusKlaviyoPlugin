@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
 
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\CustomerProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties;
 
 final class EventTest extends DTOTestCase
 {
     protected function getDTO(): Event
     {
-        $properties = new \Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties();
+        $properties = $this->propertiesFactory->create(ViewedProductProperties::class);
         $properties->eventId = 'event_id';
 
-        $event = new Event($properties);
+        $event = new Event($properties, $this->propertiesFactory->create(CustomerProperties::class));
         $event->token = 'public_token';
         $event->timestamp = 1631103497;
 

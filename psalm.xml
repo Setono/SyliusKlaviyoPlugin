@@ -26,6 +26,11 @@
                 <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
             </errorLevel>
         </DeprecatedMethod>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/DTO/Properties"/>
+            </errorLevel>
+        </MissingConstructor>
         <PluginIssue name="QueryBuilderSetParameter">
             <errorLevel type="suppress">
                 <directory name="src/Doctrine/ORM"/>
@@ -34,6 +39,7 @@
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="src/DTO/Response"/>
+                <directory name="src/DTO/Properties"/>
                 <file name="src/Context/CachedEmailContext.php"/>
             </errorLevel>
         </PropertyNotSetInConstructor>

@@ -7,7 +7,9 @@ namespace Tests\Setono\SyliusKlaviyoPlugin\Client;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClient;
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\CustomerProperties;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
@@ -49,7 +51,7 @@ final class TrackIdentifyClientTest extends TestCase
      */
     public function it_tracks_event(): void
     {
-        $eventProperties = new ViewedProductProperties();
+        $eventProperties = new ViewedProductProperties(new Container());
         $eventProperties->eventId = 'event_id';
         $eventProperties->productName = 'Black T-shirt';
         $eventProperties->price = 123.95;
@@ -60,9 +62,11 @@ final class TrackIdentifyClientTest extends TestCase
         $eventProperties->imageUrl = 'https://example.com/images/black-t-shirt.jpg';
         $eventProperties->sku = 'BLACK-T-SHIRT';
 
-        $event = new Event($eventProperties);
+        $customerProperties = new CustomerProperties(new Container());
+        $customerProperties->email = 'test@klaviyo.com';
+
+        $event = new Event($eventProperties, $customerProperties);
         $event->timestamp = 1631101604;
-        $event->customerProperties->email = 'test@klaviyo.com';
 
         $response = new MockResponse('1');
         $client = new TrackIdentifyClient($this->getHttpClient($response), self::getSerializer(), 'https://a.klaviyo.com/api', $this->token);

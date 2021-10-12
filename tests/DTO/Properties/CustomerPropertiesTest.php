@@ -14,19 +14,19 @@ final class CustomerPropertiesTest extends DTOTestCase
 {
     protected function getDTO(): CustomerProperties
     {
-        $customerProperties = new CustomerProperties();
-        $customerProperties->firstName = 'John';
-        $customerProperties->lastName = 'Doe';
-        $customerProperties->zip = '98612';
-        $customerProperties->city = 'Portland';
-        $customerProperties->region = 'Oregon';
-        $customerProperties->country = 'US';
-        $customerProperties->email = 'john.doe@klaviyo.com';
-        $customerProperties->phoneNumber = '+1 (786) 123 1234';
-        $customerProperties->image = 'https://example.com/john.doe.jpg';
-        $customerProperties->consent[] = 'sms';
+        $properties = $this->propertiesFactory->create(CustomerProperties::class);
+        $properties->firstName = 'John';
+        $properties->lastName = 'Doe';
+        $properties->zip = '98612';
+        $properties->city = 'Portland';
+        $properties->region = 'Oregon';
+        $properties->country = 'US';
+        $properties->email = 'john.doe@klaviyo.com';
+        $properties->phoneNumber = '+1 (786) 123 1234';
+        $properties->image = 'https://example.com/john.doe.jpg';
+        $properties->consent[] = 'sms';
 
-        return $customerProperties;
+        return $properties;
     }
 
     protected function getExpectedData(): array

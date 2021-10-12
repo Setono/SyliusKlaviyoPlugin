@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Webmozart\Assert\Assert;
 
-// todo the product url and image url is not set inside this class
-final class Item
+final class Item extends Base
 {
     use MoneyFormatterTrait;
 
@@ -32,28 +34,45 @@ final class Item
 
     public ?string $brand = null;
 
-    public static function createFromOrderItem(OrderItemInterface $orderItem): self
+    public function populateFromOrderItem(OrderItemInterface $orderItem): void
     {
-        $obj = new self();
-
         $variant = $orderItem->getVariant();
         if (null !== $variant) {
-            $obj->productId = (string) $variant->getId();
-            $obj->sku = $variant->getCode();
-            $obj->productName = $variant->getName();
+            $this->productId = (string) $variant->getId();
+            $this->sku = $variant->getCode();
+            $this->productName = $variant->getName();
         }
 
         $product = $orderItem->getProduct();
         if (null !== $product) {
             foreach ($product->getTaxons() as $taxon) {
-                $obj->categories[] = (string) $taxon->getName();
+                $this->categories[] = (string) $taxon->getName();
             }
+
+            // populate url
+            $this->productUrl = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
+                'slug' => $product->getSlug(),
+            ], UrlGeneratorInterface::ABSOLUTE_URL);
+
+            // populate image url
+            $images = $product->getImages();
+
+            if ($images->count() === 0) {
+                return;
+            }
+
+            /** @var ImageInterface|mixed $image */
+            $image = $images->first();
+            Assert::isInstanceOf($image, ImageInterface::class);
+
+            $this->imageUrl = $this->serviceLocator->get('liip_imagine.cache.manager')->getBrowserPath(
+                (string) $image->getPath(),
+                'sylius_shop_product_large_thumbnail'
+            );
         }
 
-        $obj->quantity = $orderItem->getQuantity();
-        $obj->itemPrice = self::formatAmount($orderItem->getUnitPrice());
-        $obj->rowTotal = $orderItem->getTotal();
-
-        return $obj;
+        $this->quantity = $orderItem->getQuantity();
+        $this->itemPrice = self::formatAmount($orderItem->getUnitPrice());
+        $this->rowTotal = $orderItem->getTotal();
     }
 }

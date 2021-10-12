@@ -15,7 +15,8 @@ final class PlacedOrderPropertiesTest extends DTOTestCase
 {
     protected function getDTO(): PlacedOrderProperties
     {
-        $properties = new PlacedOrderProperties();
+        /** @var PlacedOrderProperties $properties */
+        $properties = $this->propertiesFactory->create(PlacedOrderProperties::class);
         $properties->eventId = '1234';
         $properties->value = 29.98;
         $properties->orderId = '1234';
@@ -25,7 +26,8 @@ final class PlacedOrderPropertiesTest extends DTOTestCase
         $properties->discountCode = 'Free Shipping';
         $properties->discountValue = 5;
 
-        $item = new Item();
+        /** @var Item $item */
+        $item = $this->propertiesFactory->create(Item::class);
         $item->productName = 'Winnie the Pooh';
         $properties->items[] = $item;
 

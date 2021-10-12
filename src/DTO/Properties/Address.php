@@ -6,7 +6,7 @@ namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
 use Sylius\Component\Core\Model\AddressInterface;
 
-class Address
+class Address extends Base
 {
     public ?string $firstName = null;
 
@@ -32,20 +32,17 @@ class Address
 
     public ?string $phone = null;
 
-    public static function createFromAddress(AddressInterface $address): self
+    public function populateFromAddress(AddressInterface $address): void
     {
-        $obj = new self();
-        $obj->firstName = $address->getFirstName();
-        $obj->lastName = $address->getLastName();
-        $obj->company = $address->getCompany();
-        $obj->address1 = $address->getStreet();
-        $obj->zip = $address->getPostcode();
-        $obj->city = $address->getCity();
-        $obj->region = $address->getProvinceName();
-        $obj->regionCode = $address->getProvinceCode();
-        $obj->countryCode = $address->getCountryCode();
-        $obj->phone = $address->getPhoneNumber();
-
-        return $obj;
+        $this->firstName = $address->getFirstName();
+        $this->lastName = $address->getLastName();
+        $this->company = $address->getCompany();
+        $this->address1 = $address->getStreet();
+        $this->zip = $address->getPostcode();
+        $this->city = $address->getCity();
+        $this->region = $address->getProvinceName();
+        $this->regionCode = $address->getProvinceCode();
+        $this->countryCode = $address->getCountryCode();
+        $this->phone = $address->getPhoneNumber();
     }
 }

@@ -26,14 +26,14 @@ final class Event
      */
     public int $timestamp;
 
-    public function __construct(Properties $properties, CustomerProperties $customerProperties = null)
+    public function __construct(Properties $properties, CustomerProperties $customerProperties)
     {
         Assert::notNull($properties->event, 'You need to associate your properties with an event name, i.e. "Viewed Product"');
 
         $now = new \DateTimeImmutable();
 
         $this->event = $properties->event;
-        $this->customerProperties = $customerProperties ?? new CustomerProperties();
+        $this->customerProperties = $customerProperties;
         $this->properties = $properties;
         $this->timestamp = $now->getTimestamp();
 

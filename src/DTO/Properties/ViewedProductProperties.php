@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ImageInterface;
-use Sylius\Component\Core\Model\ImagesAwareInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -44,26 +41,14 @@ class ViewedProductProperties extends Properties
         $this->productId = (string) $product->getId();
         $this->sku = $product->getCode();
         $this->productName = $product->getName();
-    }
 
-    public function populateUrl(UrlGeneratorInterface $urlGenerator, ProductInterface $product): void
-    {
-        $this->url = $urlGenerator->generate('sylius_shop_product_show', [
+        // populate url
+        $this->url = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
             'slug' => $product->getSlug(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
-    }
 
-    public function populateImageUrl(
-        ImagesAwareInterface $imagesAware,
-        CacheManager $cacheManager,
-        string $filter = 'sylius_shop_product_large_thumbnail',
-        string $imageType = null
-    ): void {
-        if (null === $imageType) {
-            $images = $imagesAware->getImages();
-        } else {
-            $images = $imagesAware->getImagesByType($imageType);
-        }
+        // populate image url
+        $images = $product->getImages();
 
         if ($images->count() === 0) {
             return;
@@ -73,17 +58,24 @@ class ViewedProductProperties extends Properties
         $image = $images->first();
         Assert::isInstanceOf($image, ImageInterface::class);
 
-        $this->imageUrl = $cacheManager->getBrowserPath((string) $image->getPath(), $filter);
-    }
+        $this->imageUrl = $this->serviceLocator
+            ->get('liip_imagine.cache.manager')
+            ->getBrowserPath((string) $image->getPath(), 'sylius_shop_product_large_thumbnail')
+        ;
 
-    public function populatePrices(ProductVariantInterface $productVariant, ChannelInterface $channel): void
-    {
-        $channelPricing = $productVariant->getChannelPricingForChannel($channel);
-        if (null === $channelPricing) {
-            return;
+        /**
+         * Populate prices
+         *
+         * @var ProductVariantInterface $productVariant
+         */
+        $productVariant = $this->serviceLocator->get('sylius.product_variant_resolver.default')->getVariant($product);
+        if (null !== $productVariant) {
+            $channel = $this->serviceLocator->get('sylius.context.channel')->getChannel();
+            $channelPricing = $productVariant->getChannelPricingForChannel($channel);
+            if (null !== $channelPricing) {
+                $this->price = self::formatAmount($channelPricing->getPrice());
+                $this->compareAtPrice = self::formatAmount($channelPricing->getOriginalPrice());
+            }
         }
-
-        $this->price = self::formatAmount($channelPricing->getPrice());
-        $this->compareAtPrice = self::formatAmount($channelPricing->getOriginalPrice());
     }
 }

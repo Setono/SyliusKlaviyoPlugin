@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
+use Psr\Container\ContainerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 
 class PlacedOrderProperties extends Properties
@@ -33,10 +34,12 @@ class PlacedOrderProperties extends Properties
 
     public Address $shippingAddress;
 
-    public function __construct()
+    public function __construct(ContainerInterface $serviceLocator, array $hydratableObjects = [])
     {
-        $this->billingAddress = new Address();
-        $this->shippingAddress = new Address();
+        parent::__construct($serviceLocator, $hydratableObjects);
+
+        $this->billingAddress = new Address($this->serviceLocator);
+        $this->shippingAddress = new Address($this->serviceLocator);
     }
 
     public function populateFromOrder(OrderInterface $order): void
@@ -44,17 +47,17 @@ class PlacedOrderProperties extends Properties
         $this->eventId = $order->getNumber();
 
         foreach ($order->getItems() as $item) {
-            $this->items[] = Item::createFromOrderItem($item);
+            $this->items[] = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Item::class, $item);
             $this->itemNames[] = (string) $item->getVariantName();
         }
 
         $billingAddress = $order->getBillingAddress();
         if (null !== $billingAddress) {
-            $this->billingAddress = Address::createFromAddress($billingAddress);
+            $this->billingAddress = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Address::class, $billingAddress);
         }
         $shippingAddress = $order->getShippingAddress();
         if (null !== $shippingAddress) {
-            $this->shippingAddress = Address::createFromAddress($shippingAddress);
+            $this->billingAddress = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Address::class, $shippingAddress);
         }
 
         $promotionCoupon = $order->getPromotionCoupon();

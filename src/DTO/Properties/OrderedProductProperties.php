@@ -8,6 +8,8 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 
 /**
  * Docs: https://help.klaviyo.com/hc/en-us/articles/115005082927#ordered-product8
+ *
+ * todo product url and image url not populated
  */
 class OrderedProductProperties extends Properties
 {
@@ -33,31 +35,28 @@ class OrderedProductProperties extends Properties
 
     public ?string $productBrand = null;
 
-    public static function createFromOrderItem(OrderItemInterface $orderItem): self
+    public function populateFromOrderItem(OrderItemInterface $orderItem): void
     {
-        $obj = new self();
-        $obj->value = $orderItem->getTotal();
-        $obj->quantity = $orderItem->getQuantity();
+        $this->value = $orderItem->getTotal();
+        $this->quantity = $orderItem->getQuantity();
 
         $order = $orderItem->getOrder();
         if (null !== $order) {
-            $obj->orderId = $order->getNumber();
+            $this->orderId = $order->getNumber();
         }
 
         $variant = $orderItem->getVariant();
         if (null !== $variant) {
-            $obj->productId = (string) $variant->getId();
-            $obj->sku = $variant->getCode();
-            $obj->productName = $variant->getName();
+            $this->productId = (string) $variant->getId();
+            $this->sku = $variant->getCode();
+            $this->productName = $variant->getName();
         }
 
         $product = $orderItem->getProduct();
         if (null !== $product) {
             foreach ($product->getTaxons() as $taxon) {
-                $obj->categories[] = (string) $taxon->getName();
+                $this->categories[] = (string) $taxon->getName();
             }
         }
-
-        return $obj;
     }
 }

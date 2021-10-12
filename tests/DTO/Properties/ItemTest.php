@@ -14,7 +14,7 @@ final class ItemTest extends DTOTestCase
 {
     protected function getDTO(): Item
     {
-        $properties = new \Setono\SyliusKlaviyoPlugin\DTO\Properties\Item();
+        $properties = $this->propertiesFactory->create(Item::class);
         $properties->productId = '1111';
         $properties->sku = 'WINNIEPOOH';
         $properties->productName = 'Winnie the Pooh';

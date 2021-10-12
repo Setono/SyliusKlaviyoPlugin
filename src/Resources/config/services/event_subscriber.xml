@@ -2,17 +2,18 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_klaviyo.event_subscriber.added_to_cart"
-                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\AddedToCartSubscriber">
+        <service id="setono_sylius_klaviyo.event_subscriber.abstract_event"
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\AbstractEventSubscriber" abstract="true">
             <argument type="service" id="setono_sylius_klaviyo.command_bus"/>
             <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
-            <argument type="service" id="router"/>
-            <argument type="service" id="liip_imagine.cache.manager"/>
-            <argument type="service" id="sylius.product_variant_resolver.default"/>
-            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="setono_sylius_klaviyo.dto.properties.factory.properties"/>
             <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
+        </service>
 
+        <service id="setono_sylius_klaviyo.event_subscriber.added_to_cart"
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\AddedToCartSubscriber"
+                 parent="setono_sylius_klaviyo.event_subscriber.abstract_event">
             <tag name="kernel.event_subscriber"/>
         </service>
 
@@ -22,22 +23,14 @@
             <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="sylius.repository.order"/>
-            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
 
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="setono_sylius_klaviyo.event_subscriber.viewed_product"
-                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\ViewedProductSubscriber">
-            <argument type="service" id="setono_sylius_klaviyo.command_bus"/>
-            <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
-            <argument type="service" id="router"/>
-            <argument type="service" id="liip_imagine.cache.manager"/>
-            <argument type="service" id="sylius.product_variant_resolver.default"/>
-            <argument type="service" id="sylius.context.channel"/>
-            <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
-
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\ViewedProductSubscriber"
+                 parent="setono_sylius_klaviyo.event_subscriber.abstract_event">
             <tag name="kernel.event_subscriber"/>
         </service>
 

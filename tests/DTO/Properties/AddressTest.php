@@ -14,7 +14,7 @@ final class AddressTest extends DTOTestCase
 {
     protected function getDTO(): Address
     {
-        $properties = new Address();
+        $properties = $this->propertiesFactory->create(Address::class);
         $properties->firstName = 'John';
         $properties->lastName = 'Smith';
         $properties->address1 = '123 abc street';

@@ -12,9 +12,9 @@ use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
  */
 final class OrderedProductPropertiesTest extends DTOTestCase
 {
-    protected function getDTO(): \Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties
+    protected function getDTO(): OrderedProductProperties
     {
-        $properties = new OrderedProductProperties();
+        $properties = $this->propertiesFactory->create(OrderedProductProperties::class);
         $properties->eventId = '1234';
         $properties->value = 29.98;
         $properties->orderId = '1234';

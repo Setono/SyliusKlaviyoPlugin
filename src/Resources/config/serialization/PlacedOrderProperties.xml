@@ -3,7 +3,7 @@
             xmlns="http://symfony.com/schema/dic/serializer-mapping"
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
-    <class name="Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties">
+    <class name="Setono\SyliusKlaviyoPlugin\DTO\Properties\PlacedOrderProperties">
         <attribute name="orderId" serialized-name="OrderId">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>

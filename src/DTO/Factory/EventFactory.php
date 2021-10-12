@@ -7,7 +7,7 @@ namespace Setono\SyliusKlaviyoPlugin\DTO\Factory;
 use Setono\ClientId\Provider\ClientIdProviderInterface;
 use Setono\SyliusKlaviyoPlugin\Context\EmailContextInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
-use Setono\SyliusKlaviyoPlugin\DTO\Properties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Properties;
 use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
 
 final class EventFactory implements EventFactoryInterface

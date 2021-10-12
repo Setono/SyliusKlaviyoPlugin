@@ -7,7 +7,7 @@ namespace Tests\Setono\SyliusKlaviyoPlugin\Client;
 use PHPUnit\Framework\TestCase;
 use Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClient;
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
-use Setono\SyliusKlaviyoPlugin\DTO\ViewedProductProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;

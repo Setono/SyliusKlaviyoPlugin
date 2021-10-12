@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\ViewedProductProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\ViewedProductProperties
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties
  */
 final class ViewedProductPropertiesTest extends DTOTestCase
 {

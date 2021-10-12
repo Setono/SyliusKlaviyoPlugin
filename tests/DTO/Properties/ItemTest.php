@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\Item;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Item;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\Item
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\Item
  */
 final class ItemTest extends DTOTestCase
 {
     protected function getDTO(): Item
     {
-        $properties = new Item();
+        $properties = new \Setono\SyliusKlaviyoPlugin\DTO\Properties\Item();
         $properties->productId = '1111';
         $properties->sku = 'WINNIEPOOH';
         $properties->productName = 'Winnie the Pooh';

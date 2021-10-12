@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO;
 
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\CustomerProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Properties;
 use Webmozart\Assert\Assert;
 
 final class Event

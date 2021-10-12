@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\Item;
-use Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Item;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\PlacedOrderProperties;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\PlacedOrderProperties
  */
 final class PlacedOrderPropertiesTest extends DTOTestCase
 {

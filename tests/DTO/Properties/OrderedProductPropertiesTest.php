@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\OrderedProductProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\OrderedProductProperties
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties
  */
 final class OrderedProductPropertiesTest extends DTOTestCase
 {
-    protected function getDTO(): OrderedProductProperties
+    protected function getDTO(): \Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties
     {
         $properties = new OrderedProductProperties();
         $properties->eventId = '1234';

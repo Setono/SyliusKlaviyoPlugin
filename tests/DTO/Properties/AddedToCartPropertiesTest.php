@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\AddedToCartProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\AddedToCartProperties;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\AddedToCartProperties
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\AddedToCartProperties
  */
 final class AddedToCartPropertiesTest extends DTOTestCase
 {

@@ -6,8 +6,8 @@ namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
-use Setono\SyliusKlaviyoPlugin\DTO\OrderedProductProperties;
-use Setono\SyliusKlaviyoPlugin\DTO\PlacedOrderProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\PlacedOrderProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
 use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;

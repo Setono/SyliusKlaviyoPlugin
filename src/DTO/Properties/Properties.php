@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusKlaviyoPlugin\DTO;
+namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
 abstract class Properties
 {

@@ -6,8 +6,8 @@ namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Setono\SyliusKlaviyoPlugin\DTO\AddedToCartProperties;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\AddedToCartProperties;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
 use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;

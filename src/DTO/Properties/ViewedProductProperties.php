@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusKlaviyoPlugin\DTO;
+namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Sylius\Component\Core\Model\ChannelInterface;

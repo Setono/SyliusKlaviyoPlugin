@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
+namespace Tests\Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
-use Setono\SyliusKlaviyoPlugin\DTO\Address;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Address;
+use Tests\Setono\SyliusKlaviyoPlugin\DTO\DTOTestCase;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\DTO\Address
+ * @covers \Setono\SyliusKlaviyoPlugin\DTO\Properties\Address
  */
 final class AddressTest extends DTOTestCase
 {

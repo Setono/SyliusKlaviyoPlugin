@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Tests\Setono\SyliusKlaviyoPlugin\DTO;
 
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
-use Setono\SyliusKlaviyoPlugin\DTO\ViewedProductProperties;
 
 final class EventTest extends DTOTestCase
 {
     protected function getDTO(): Event
     {
-        $properties = new ViewedProductProperties();
+        $properties = new \Setono\SyliusKlaviyoPlugin\DTO\Properties\ViewedProductProperties();
         $properties->eventId = 'event_id';
 
         $event = new Event($properties);

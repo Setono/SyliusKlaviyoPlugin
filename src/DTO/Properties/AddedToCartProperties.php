@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusKlaviyoPlugin\DTO;
+namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;

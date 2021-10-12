@@ -6,6 +6,7 @@ namespace Setono\SyliusKlaviyoPlugin\DTO;
 
 use Sylius\Component\Core\Model\OrderItemInterface;
 
+// todo the product url and image url is not set inside this class
 final class Item
 {
     use MoneyFormatterTrait;

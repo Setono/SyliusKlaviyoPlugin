@@ -2,6 +2,20 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+        <service id="setono_sylius_klaviyo.event_subscriber.added_to_cart"
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\AddedToCartSubscriber">
+            <argument type="service" id="setono_sylius_klaviyo.command_bus"/>
+            <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="liip_imagine.cache.manager"/>
+            <argument type="service" id="sylius.product_variant_resolver.default"/>
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy" />
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="setono_sylius_klaviyo.event_subscriber.placed_order"
                  class="Setono\SyliusKlaviyoPlugin\EventSubscriber\PlacedOrderSubscriber">
             <argument type="service" id="setono_sylius_klaviyo.command_bus"/>

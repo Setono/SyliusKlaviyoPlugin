@@ -1,4 +1,4 @@
-# Setono Sylius Plugin Skeleton
+# Klaviyo plugin for Sylius
 
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
@@ -6,33 +6,94 @@
 [![Build Status][ico-github-actions]][link-github-actions]
 [![Code Coverage][ico-code-coverage]][link-code-coverage]
 
-[Setono](https://setono.com) have made a bunch of [plugins for Sylius](https://github.com/Setono), and we have some guidelines
-which we try to follow when developing plugins. These guidelines are used in this repository, and it gives you a very
-solid base when developing plugins.
+Use this plugin to integrate your store with [Klaviyo](https://www.klaviyo.com).
 
-Enjoy! 
+## Installation
 
-## Quickstart
+### Step 1: Download the plugin
 
-1. Run `composer create-project --prefer-source --no-install --remove-vcs setono/sylius-klaviyo-plugin:dev-master ProjectName` or just click the `Use this template` button at the right corner of this repository.
-2. Run `cd ProjectName && composer install`
-3. From the plugin skeleton root directory, run the following commands:
+Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
-    ```bash
-    $ php init
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && bin/console assets:install)
+```bash
+$ composer require setono/sylius-klaviyo-plugin
+```
+
+### Step 2: Enable the plugin
+
+Then, enable the plugin by adding the following to the list of registered plugins/bundles
+in the `config/bundles.php` file of your project:
+
+```php
+<?php
+
+return [
+    // ...
     
-    $ (cd tests/Application && bin/console doctrine:database:create)
-    $ (cd tests/Application && bin/console doctrine:schema:create)
-   
-    $ (cd tests/Application && bin/console sylius:fixtures:load -n)
-    ```
-   
-3. Start your local PHP server: `symfony serve` (see https://symfony.com/doc/current/setup/symfony_server.html for docs)
+    Setono\SyliusKlaviyoPlugin\SetonoSyliusKlaviyoPlugin::class => ['all' => true],
+    
+    // It is important to add plugin before the grid bundle
+    Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
+        
+    // ...
+];
+```
 
-To be able to setup a plugin's database, remember to configure you database credentials in `tests/Application/.env` and `tests/Application/.env.test`.
+**NOTE** that you must instantiate the plugin before the grid bundle, else you will see an exception like
+`You have requested a non-existent parameter "setono_sylius_klaviyo.model.member_list.class".`
+
+### Step 3: Import routing
+
+```yaml
+# config/routes/setono_sylius_klaviyo.yaml
+setono_sylius_klaviyo:
+    resource: "@SetonoSyliusKlaviyoPlugin/Resources/config/routes.yaml"
+```
+
+If you don't use localized URLs, use this routing file instead: `@SetonoSyliusKlaviyoPlugin/Resources/config/routes_no_locale.yaml`
+
+### Step 4: Configure plugin
+
+```yaml
+# config/packages/setono_sylius_klaviyo.yaml
+imports:
+    - { resource: "@SetonoSyliusKlaviyoPlugin/Resources/config/app/config.yaml" }
+
+setono_sylius_klaviyo:
+    credentials:
+        public_token: "%env(KLAVIYO_PUBLIC_TOKEN)%"
+        private_token: "%env(KLAVIYO_PRIVATE_TOKEN)%"
+```
+
+Then remember to set these environment variables: `KLAVIYO_PUBLIC_TOKEN` and `KLAVIYO_PRIVATE_TOKEN` with the respective tokens.
+
+### Step 5: Update database schema
+
+Use Doctrine migrations to create a migration file and update the database.
+
+```bash
+$ bin/console doctrine:migrations:diff
+$ bin/console doctrine:migrations:migrate
+```
+
+### Step 6: Using asynchronous transport (optional, but recommended)
+
+All commands in this plugin will extend the [CommandInterface](src/Message/Command/CommandInterface.php).
+Therefore you can route all commands easily by adding this to your [Messenger config](https://symfony.com/doc/current/messenger.html#routing-messages-to-a-transport):
+
+```yaml
+# config/packages/messenger.yaml
+framework:
+    messenger:
+        routing:
+            # Route all command messages to the async transport
+            # This presumes that you have already set up an 'async' transport
+            # See docs on how to setup a transport like that: https://symfony.com/doc/current/messenger.html#transports-async-queued-messages
+            'Setono\SyliusKlaviyoPlugin\Message\Command\CommandInterface': async
+```
+
+## Usage
+After setup you want to associate channels with lists in Klaviyo. Go to `/admin/klaviyo/member-lists/`
+and synchronize the lists. After that edit the lists and enable channels on the lists.
 
 [ico-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/unstable

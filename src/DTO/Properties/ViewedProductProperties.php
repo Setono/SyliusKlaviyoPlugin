@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -43,7 +44,7 @@ class ViewedProductProperties extends Properties
         $this->productName = $product->getName();
 
         // populate url
-        $this->url = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
+        $this->url = $this->getUrlGenerator()->generate('sylius_shop_product_show', [
             'slug' => $product->getSlug(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -58,19 +59,19 @@ class ViewedProductProperties extends Properties
         $image = $images->first();
         Assert::isInstanceOf($image, ImageInterface::class);
 
-        $this->imageUrl = $this->serviceLocator
-            ->get('liip_imagine.cache.manager')
+        $this->imageUrl = $this->getCacheManager()
             ->getBrowserPath((string) $image->getPath(), 'sylius_shop_product_large_thumbnail')
         ;
 
         /**
          * Populate prices
          *
-         * @var ProductVariantInterface $productVariant
+         * @var ProductVariantInterface|null $productVariant
          */
-        $productVariant = $this->serviceLocator->get('sylius.product_variant_resolver.default')->getVariant($product);
+        $productVariant = $this->getProductVariantResolver()->getVariant($product);
         if (null !== $productVariant) {
-            $channel = $this->serviceLocator->get('sylius.context.channel')->getChannel();
+            /** @var ChannelInterface $channel */
+            $channel = $this->getChannelContext()->getChannel();
             $channelPricing = $productVariant->getChannelPricingForChannel($channel);
             if (null !== $channelPricing) {
                 $this->price = self::formatAmount($channelPricing->getPrice());

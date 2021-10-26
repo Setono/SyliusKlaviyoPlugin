@@ -62,7 +62,7 @@ final class ConfigurationTest extends TestCase
                 'show_in_checkout' => true,
             ],
             'email_cookie_name' => 'ssk_e',
-            'tracking_strategy' => 'track_with_email',
+            'tracking_strategy' => 'track_all',
             'credentials' => [
                 'public_token' => 'last value',
                 'private_token' => 'last value',

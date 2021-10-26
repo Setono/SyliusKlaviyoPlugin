@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Psr\Container\ContainerInterface;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
+use Sylius\Component\Channel\Context\ChannelContextInterface;
+use Sylius\Component\Order\Context\CartContextInterface;
+use Sylius\Component\Product\Resolver\ProductVariantResolverInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @psalm-consistent-constructor
@@ -49,6 +55,7 @@ abstract class Base
             }
 
             foreach ($hydratableObjects as $hydratableObject) {
+                /** @psalm-suppress ArgumentTypeCoercion */
                 if (!is_a($hydratableObject, $parameterType->getName(), true)) {
                     continue;
                 }
@@ -56,5 +63,57 @@ abstract class Base
                 $this->{$method->getName()}($hydratableObject);
             }
         }
+    }
+
+    protected function getCacheManager(): CacheManager
+    {
+        /** @var CacheManager $service */
+        $service = $this->serviceLocator->get('liip_imagine.cache.manager');
+
+        return $service;
+    }
+
+    protected function getCartContext(): CartContextInterface
+    {
+        /** @var CartContextInterface $service */
+        $service = $this->serviceLocator->get('sylius.context.cart');
+
+        return $service;
+    }
+
+    protected function getChannelContext(): ChannelContextInterface
+    {
+        /** @var ChannelContextInterface $service */
+        $service = $this->serviceLocator->get('sylius.context.channel');
+
+        return $service;
+    }
+
+    protected function getProductVariantResolver(): ProductVariantResolverInterface
+    {
+        /** @var ProductVariantResolverInterface $service */
+        $service = $this->serviceLocator->get('sylius.product_variant_resolver.default');
+
+        return $service;
+    }
+
+    protected function getPropertiesFactory(): PropertiesFactoryInterface
+    {
+        /**
+         * @psalm-suppress PrivateService
+         *
+         * @var PropertiesFactoryInterface $service
+         */
+        $service = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties');
+
+        return $service;
+    }
+
+    protected function getUrlGenerator(): UrlGeneratorInterface
+    {
+        /** @var UrlGeneratorInterface $service */
+        $service = $this->serviceLocator->get('router');
+
+        return $service;
     }
 }

@@ -47,7 +47,7 @@ class AddedToCartProperties extends Properties
         $product = $orderItem->getProduct();
 
         // because of this bug: https://github.com/Sylius/Sylius/issues/9407 we can't just get the order from the order item
-        $order = $this->serviceLocator->get('sylius.context.cart')->getCart();
+        $order = $this->getCartContext()->getCart();
 
         $this->addedItemProductName = $orderItem->getVariantName();
         $this->addedItemPrice = self::formatAmount($orderItem->getFullDiscountedUnitPrice());
@@ -71,7 +71,7 @@ class AddedToCartProperties extends Properties
             $this->addedItemCategories = array_unique($this->addedItemCategories);
 
             // populate product url
-            $this->addedItemUrl = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
+            $this->addedItemUrl = $this->getUrlGenerator()->generate('sylius_shop_product_show', [
                 'slug' => $product->getSlug(),
             ], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -86,7 +86,7 @@ class AddedToCartProperties extends Properties
             $image = $images->first();
             Assert::isInstanceOf($image, ImageInterface::class);
 
-            $this->addedItemImageUrl = $this->serviceLocator->get('liip_imagine.cache.manager')->getBrowserPath(
+            $this->addedItemImageUrl = $this->getCacheManager()->getBrowserPath(
                 (string) $image->getPath(),
                 'sylius_shop_product_large_thumbnail'
             );
@@ -95,7 +95,7 @@ class AddedToCartProperties extends Properties
         /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
             $this->itemNames[] = (string) $item->getVariantName();
-            $this->items[] = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Item::class, $item);
+            $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
         }
     }
 }

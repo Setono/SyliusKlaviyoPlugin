@@ -47,17 +47,17 @@ class PlacedOrderProperties extends Properties
         $this->eventId = $order->getNumber();
 
         foreach ($order->getItems() as $item) {
-            $this->items[] = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Item::class, $item);
+            $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
             $this->itemNames[] = (string) $item->getVariantName();
         }
 
         $billingAddress = $order->getBillingAddress();
         if (null !== $billingAddress) {
-            $this->billingAddress = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Address::class, $billingAddress);
+            $this->billingAddress = $this->getPropertiesFactory()->create(Address::class, $billingAddress);
         }
         $shippingAddress = $order->getShippingAddress();
         if (null !== $shippingAddress) {
-            $this->billingAddress = $this->serviceLocator->get('setono_sylius_klaviyo.dto.properties.factory.properties')->create(Address::class, $shippingAddress);
+            $this->billingAddress = $this->getPropertiesFactory()->create(Address::class, $shippingAddress);
         }
 
         $promotionCoupon = $order->getPromotionCoupon();

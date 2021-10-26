@@ -15,7 +15,6 @@ use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Repository\OrderRepositoryInterface;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -85,7 +84,7 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
     private function handleOrderedProduct(OrderItemInterface $orderItem): void
     {
         // here we set some defaults
-        $properties = OrderedProductProperties::createFromOrderItem($orderItem);
+        $properties = $this->propertiesFactory->create(OrderedProductProperties::class, $orderItem);
 
         // then we create the event that will be sent to Klaviyo
         $event = $this->eventFactory->create($properties);

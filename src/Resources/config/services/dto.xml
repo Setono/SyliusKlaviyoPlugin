@@ -7,6 +7,7 @@
             <argument type="service" id="setono_client_id.provider.default_client_id"/>
             <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
             <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
+            <argument type="service" id="setono_sylius_klaviyo.dto.properties.factory.properties"/>
         </service>
 
         <service id="setono_sylius_klaviyo.dto.properties.factory.properties"

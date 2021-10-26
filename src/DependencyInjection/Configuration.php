@@ -45,7 +45,7 @@ final class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('tracking_strategy')
                     ->cannotBeEmpty()
-                    ->defaultValue('track_with_email')
+                    ->defaultValue('track_all')
                     ->info('The strategy to use when tracking. Out of the box you can choose between "track_all" which tracks all visitors and "track_with_email" which tracks visitors when they have provided their email')
                 ->end()
                 ->arrayNode('credentials')

@@ -18,12 +18,9 @@
         </service>
 
         <service id="setono_sylius_klaviyo.event_subscriber.placed_order"
-                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\PlacedOrderSubscriber">
-            <argument type="service" id="setono_sylius_klaviyo.command_bus"/>
-            <argument type="service" id="setono_sylius_klaviyo.dto.factory.event"/>
-            <argument type="service" id="event_dispatcher"/>
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\PlacedOrderSubscriber"
+                 parent="setono_sylius_klaviyo.event_subscriber.abstract_event">
             <argument type="service" id="sylius.repository.order"/>
-            <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
 
             <tag name="kernel.event_subscriber"/>
         </service>

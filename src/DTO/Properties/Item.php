@@ -50,7 +50,7 @@ final class Item extends Base
             }
 
             // populate url
-            $this->productUrl = $this->serviceLocator->get('router')->generate('sylius_shop_product_show', [
+            $this->productUrl = $this->getUrlGenerator()->generate('sylius_shop_product_show', [
                 'slug' => $product->getSlug(),
             ], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -65,7 +65,7 @@ final class Item extends Base
             $image = $images->first();
             Assert::isInstanceOf($image, ImageInterface::class);
 
-            $this->imageUrl = $this->serviceLocator->get('liip_imagine.cache.manager')->getBrowserPath(
+            $this->imageUrl = $this->getCacheManager()->getBrowserPath(
                 (string) $image->getPath(),
                 'sylius_shop_product_large_thumbnail'
             );

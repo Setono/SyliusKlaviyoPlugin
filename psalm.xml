@@ -43,5 +43,6 @@
                 <file name="src/Context/CachedEmailContext.php"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
+        <UnnecessaryVarAnnotation errorLevel="suppress"/> <!-- The reason we use these @var annotations is to help PhpStorm -->
     </issueHandlers>
 </psalm>

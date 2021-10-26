@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
+use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * Docs: https://help.klaviyo.com/hc/en-us/articles/115005082927#ordered-product8
- *
- * todo product url and image url not populated
  */
 class OrderedProductProperties extends Properties
 {
@@ -56,6 +56,24 @@ class OrderedProductProperties extends Properties
         if (null !== $product) {
             foreach ($product->getTaxons() as $taxon) {
                 $this->categories[] = (string) $taxon->getName();
+            }
+
+            // populate url
+            $this->productUrl = $this->getUrlGenerator()->generate('sylius_shop_product_show', [
+                'slug' => $product->getSlug(),
+            ]);
+
+            // populate image url
+            $images = $product->getImages();
+
+            if ($images->count() !== 0) {
+                /** @var ImageInterface|mixed $image */
+                $image = $images->first();
+                Assert::isInstanceOf($image, ImageInterface::class);
+
+                $this->imageUrl = $this->getCacheManager()
+                    ->getBrowserPath((string) $image->getPath(), 'sylius_shop_product_large_thumbnail')
+                ;
             }
         }
     }

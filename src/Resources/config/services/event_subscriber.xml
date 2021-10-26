@@ -25,6 +25,14 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="setono_sylius_klaviyo.event_subscriber.started_checkout"
+                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\StartedCheckoutSubscriber"
+                 parent="setono_sylius_klaviyo.event_subscriber.abstract_event">
+            <argument type="service" id="sylius.context.cart"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="setono_sylius_klaviyo.event_subscriber.viewed_product"
                  class="Setono\SyliusKlaviyoPlugin\EventSubscriber\ViewedProductSubscriber"
                  parent="setono_sylius_klaviyo.event_subscriber.abstract_event">

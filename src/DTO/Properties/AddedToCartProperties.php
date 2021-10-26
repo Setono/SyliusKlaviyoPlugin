@@ -97,5 +97,7 @@ class AddedToCartProperties extends Properties
             $this->itemNames[] = (string) $item->getVariantName();
             $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
         }
+
+        $this->checkoutUrl = $this->getUrlGenerator()->generate('sylius_shop_checkout_start');
     }
 }

@@ -32,6 +32,7 @@
         "Sylius\\Component\\Core\\Model\\ProductVariantInterface",
         "Sylius\\Component\\Core\\Repository\\CustomerRepositoryInterface",
         "Sylius\\Component\\Customer\\Model\\CustomerInterface",
+        "Sylius\\Component\\Order\\Context\\CartContextInterface",
         "Sylius\\Component\\Order\\Repository\\OrderRepositoryInterface",
         "Sylius\\Component\\Product\\Resolver\\ProductVariantResolverInterface"
     ]

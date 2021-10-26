@@ -7,7 +7,7 @@ namespace Setono\SyliusKlaviyoPlugin\Message\Command;
 use Sylius\Component\Customer\Model\CustomerInterface;
 use Webmozart\Assert\Assert;
 
-final class SubscribeCustomer
+final class SubscribeCustomer implements CommandInterface
 {
     private int $customerId;
 

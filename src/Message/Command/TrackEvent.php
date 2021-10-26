@@ -6,7 +6,7 @@ namespace Setono\SyliusKlaviyoPlugin\Message\Command;
 
 use Setono\SyliusKlaviyoPlugin\DTO\Event;
 
-final class TrackEvent
+final class TrackEvent implements CommandInterface
 {
     private Event $event;
 

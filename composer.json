@@ -52,7 +52,7 @@
         "symfony/framework-bundle": "~5.2.12",
         "symfony/intl": "^5.3",
         "symfony/property-info": "^5.3",
-        "symfony/twig-bundle": "~5.2.12",
+        "symfony/twig-bundle": "~5.3.10",
         "symfony/web-profiler-bundle": "^5.2",
         "symfony/webpack-encore-bundle": "^1.12"
     },

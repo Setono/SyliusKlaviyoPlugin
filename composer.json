@@ -18,7 +18,7 @@
         "psr/log": "^1.1",
         "setono/client-id-bundle": "^0.2.0",
         "setono/client-id-contracts": "^0.2",
-        "spatie/data-transfer-object": "^2.8",
+        "spatie/data-transfer-object": "^1.14 || ^2.8",
         "sylius/resource-bundle": "^1.6",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/console": "^4.4 || ^5.0",

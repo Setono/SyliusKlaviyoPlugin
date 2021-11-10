@@ -65,6 +65,24 @@ abstract class Base
         }
     }
 
+    /**
+     * todo create data mappers instead so that we don't have services inside DTOs
+     */
+    public function __serialize(): array
+    {
+        /** @var array<string, mixed> $res */
+        $res = [];
+
+        $refl = new \ReflectionClass($this);
+        foreach ($refl->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+            $propertyName = $property->getName();
+            /** @psalm-suppress MixedAssignment */
+            $res[$propertyName] = $this->{$propertyName};
+        }
+
+        return $res;
+    }
+
     protected function getCacheManager(): CacheManager
     {
         /** @var CacheManager $service */

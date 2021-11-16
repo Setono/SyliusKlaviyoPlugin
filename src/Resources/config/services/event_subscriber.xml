@@ -9,6 +9,7 @@
             <argument type="service" id="setono_sylius_klaviyo.dto.properties.factory.properties"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="setono_sylius_klaviyo.strategy.default_tracking_strategy"/>
+            <argument type="service" id="setono_sylius_klaviyo.bot_detector.default"/>
         </service>
 
         <service id="setono_sylius_klaviyo.event_subscriber.added_to_cart"

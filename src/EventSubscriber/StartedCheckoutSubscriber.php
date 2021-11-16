@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Setono\SyliusKlaviyoPlugin\BotDetector\BotDetectorInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\StartedCheckoutProperties;
@@ -26,9 +27,10 @@ final class StartedCheckoutSubscriber extends AbstractEventSubscriber
         PropertiesFactoryInterface $propertiesFactory,
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
+        BotDetectorInterface $botDetector,
         CartContextInterface $cartContext
     ) {
-        parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy);
+        parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
 
         $this->cartContext = $cartContext;
     }
@@ -46,7 +48,7 @@ final class StartedCheckoutSubscriber extends AbstractEventSubscriber
             return;
         }
 
-        if (!$this->trackingStrategy->track()) {
+        if (!$this->trackingStrategy->track() || $this->botDetector->isBot()) {
             return;
         }
 

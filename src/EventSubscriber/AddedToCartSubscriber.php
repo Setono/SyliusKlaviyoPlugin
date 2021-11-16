@@ -22,7 +22,7 @@ final class AddedToCartSubscriber extends AbstractEventSubscriber
 
     public function track(ResourceControllerEvent $resourceControllerEvent): void
     {
-        if (!$this->trackingStrategy->track()) {
+        if (!$this->trackingStrategy->track() || $this->botDetector->isBot()) {
             return;
         }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Setono\SyliusKlaviyoPlugin\BotDetector\BotDetectorInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
@@ -23,17 +24,21 @@ abstract class AbstractEventSubscriber implements EventSubscriberInterface
 
     protected TrackingStrategyInterface $trackingStrategy;
 
+    protected BotDetectorInterface $botDetector;
+
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
         PropertiesFactoryInterface $propertiesFactory,
         EventDispatcherInterface $eventDispatcher,
-        TrackingStrategyInterface $trackingStrategy
+        TrackingStrategyInterface $trackingStrategy,
+        BotDetectorInterface $botDetector
     ) {
         $this->commandBus = $commandBus;
         $this->eventFactory = $eventFactory;
         $this->propertiesFactory = $propertiesFactory;
         $this->eventDispatcher = $eventDispatcher;
         $this->trackingStrategy = $trackingStrategy;
+        $this->botDetector = $botDetector;
     }
 }

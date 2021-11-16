@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Setono\SyliusKlaviyoPlugin\BotDetector\BotDetectorInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Factory\EventFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\OrderedProductProperties;
@@ -33,9 +34,10 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
         PropertiesFactoryInterface $propertiesFactory,
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
+        BotDetectorInterface $botDetector,
         OrderRepositoryInterface $orderRepository
     ) {
-        parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy);
+        parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
         $this->orderRepository = $orderRepository;
     }
 
@@ -48,7 +50,7 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        if (!$this->trackingStrategy->track()) {
+        if (!$this->trackingStrategy->track() || $this->botDetector->isBot()) {
             return;
         }
 

@@ -30,6 +30,6 @@ final class SynchronizeListsCommand extends Command
         $this->listSynchronizer->setLogger(new ConsoleLogger($output));
         $this->listSynchronizer->synchronize();
 
-        return Command::SUCCESS;
+        return 0;
     }
 }

@@ -1,12 +1,12 @@
 {
     "name": "setono/sylius-klaviyo-plugin",
-    "type": "sylius-plugin",
     "description": "Klaviyo integration for Sylius",
+    "license": "MIT",
+    "type": "sylius-plugin",
     "keywords": [
         "sylius",
         "sylius-plugin"
     ],
-    "license": "MIT",
     "require": {
         "php": ">=7.4",
         "doctrine/collections": "^1.6",
@@ -57,14 +57,7 @@
         "symfony/web-profiler-bundle": "^5.3",
         "symfony/webpack-encore-bundle": "^1.12"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Setono\\SyliusKlaviyoPlugin\\": "src/"
@@ -78,7 +71,14 @@
             "tests/Application/Kernel.php"
         ]
     },
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "scripts": {
         "analyse": [
             "@ensure-test-container-exists",

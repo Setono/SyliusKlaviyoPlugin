@@ -53,7 +53,7 @@
         "symfony/dotenv": "^5.3",
         "symfony/intl": "^5.3",
         "symfony/property-info": "^5.3",
-        "symfony/web-profiler-bundle": "^5.3",
+        "symfony/web-profiler-bundle": "^5.4",
         "symfony/webpack-encore-bundle": "^1.12"
     },
     "prefer-stable": true,

@@ -9,6 +9,8 @@ use Sylius\Component\Core\Model\OrderInterface;
 
 class PlacedOrderProperties extends Properties
 {
+    use MoneyFormatterTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Placed Order';
 
@@ -45,6 +47,7 @@ class PlacedOrderProperties extends Properties
     public function populateFromOrder(OrderInterface $order): void
     {
         $this->eventId = $order->getNumber();
+        $this->value = self::formatAmount($order->getTotal());
 
         foreach ($order->getItems() as $item) {
             $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
@@ -57,12 +60,25 @@ class PlacedOrderProperties extends Properties
         }
         $shippingAddress = $order->getShippingAddress();
         if (null !== $shippingAddress) {
-            $this->billingAddress = $this->getPropertiesFactory()->create(Address::class, $shippingAddress);
+            $this->shippingAddress = $this->getPropertiesFactory()->create(Address::class, $shippingAddress);
         }
 
         $promotionCoupon = $order->getPromotionCoupon();
         if (null !== $promotionCoupon) {
             $this->discountCode = $promotionCoupon->getCode();
         }
+
+        foreach ($this->items as $item) {
+            if (null !== $item->brand) {
+                $this->brands[] = $item->brand;
+            }
+
+            foreach ($item->categories as $category) {
+                $this->categories[] = $category;
+            }
+        }
+
+        $this->brands = array_filter(array_unique($this->brands));
+        $this->categories = array_unique($this->categories);
     }
 }

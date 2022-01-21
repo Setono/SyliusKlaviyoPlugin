@@ -69,10 +69,15 @@ final class Item extends Base
                 (string) $image->getPath(),
                 'sylius_shop_product_large_thumbnail'
             );
+
+            // populate brand
+            if ($product instanceof BrandAwareInterface) {
+                $this->brand = $product->getBrandName();
+            }
         }
 
         $this->quantity = $orderItem->getQuantity();
         $this->itemPrice = self::formatAmount($orderItem->getUnitPrice());
-        $this->rowTotal = $orderItem->getTotal();
+        $this->rowTotal = self::formatAmount($orderItem->getTotal());
     }
 }

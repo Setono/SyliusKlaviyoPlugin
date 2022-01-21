@@ -31,6 +31,7 @@ class StartedCheckoutProperties extends Properties
     {
         $this->eventId = sprintf('%s_%s', (string) $order->getNumber(), (new \DateTimeImmutable())->format('U.u'));
         $this->checkoutUrl = $this->getUrlGenerator()->generate('sylius_shop_checkout_start');
+        $this->value = self::formatAmount($order->getTotal());
 
         foreach ($order->getItems() as $item) {
             $this->itemNames[] = (string) $item->getProductName();

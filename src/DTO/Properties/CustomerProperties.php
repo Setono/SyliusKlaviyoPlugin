@@ -6,6 +6,8 @@ namespace Setono\SyliusKlaviyoPlugin\DTO\Properties;
 
 class CustomerProperties extends Base
 {
+    public ?string $exchangeId = null;
+
     public ?string $id = null;
 
     public ?string $email = null;

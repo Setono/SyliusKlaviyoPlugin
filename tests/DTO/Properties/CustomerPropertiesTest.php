@@ -15,6 +15,7 @@ final class CustomerPropertiesTest extends DTOTestCase
     protected function getDTO(): CustomerProperties
     {
         $properties = $this->propertiesFactory->create(CustomerProperties::class);
+        $properties->exchangeId = 'exchange';
         $properties->firstName = 'John';
         $properties->lastName = 'Doe';
         $properties->zip = '98612';
@@ -32,6 +33,7 @@ final class CustomerPropertiesTest extends DTOTestCase
     protected function getExpectedData(): array
     {
         return [
+            '$exchange_id' => 'exchange',
             '$email' => 'john.doe@klaviyo.com',
             '$first_name' => 'John',
             '$last_name' => 'Doe',

@@ -8,6 +8,10 @@
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
+        <attribute name="exchangeId" serialized-name="$exchange_id">
+            <group>setono:sylius-klaviyo:event</group>
+        </attribute>
+
         <attribute name="email" serialized-name="$email">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>

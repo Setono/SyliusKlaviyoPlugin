@@ -13,6 +13,8 @@ use Webmozart\Assert\Assert;
  */
 class OrderedProductProperties extends Properties
 {
+    use MoneyFormatterTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Ordered Product';
 
@@ -37,7 +39,7 @@ class OrderedProductProperties extends Properties
 
     public function populateFromOrderItem(OrderItemInterface $orderItem): void
     {
-        $this->value = $orderItem->getTotal();
+        $this->value = self::formatAmount($orderItem->getTotal());
         $this->quantity = $orderItem->getQuantity();
 
         $order = $orderItem->getOrder();

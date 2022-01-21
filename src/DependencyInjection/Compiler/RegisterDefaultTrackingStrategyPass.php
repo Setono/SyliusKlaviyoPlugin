@@ -24,8 +24,6 @@ final class RegisterDefaultTrackingStrategyPass implements CompilerPassInterface
          * @var string $id
          */
         foreach ($container->findTaggedServiceIds('setono_sylius_klaviyo.tracking_strategy') as $id => $tags) {
-            Assert::isArray($tags);
-
             /** @var mixed $tag */
             foreach ($tags as $tag) {
                 Assert::isArray($tag);

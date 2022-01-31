@@ -11,6 +11,8 @@ class PlacedOrderProperties extends Properties
 {
     use MoneyFormatterTrait;
 
+    use TaxonTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Placed Order';
 
@@ -72,13 +74,9 @@ class PlacedOrderProperties extends Properties
             if (null !== $item->brand) {
                 $this->brands[] = $item->brand;
             }
-
-            foreach ($item->categories as $category) {
-                $this->categories[] = $category;
-            }
         }
 
         $this->brands = array_filter(array_unique($this->brands));
-        $this->categories = array_unique($this->categories);
+        $this->categories = self::getTaxonsFromItems($this->items);
     }
 }

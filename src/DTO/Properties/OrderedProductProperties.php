@@ -15,6 +15,8 @@ class OrderedProductProperties extends Properties
 {
     use MoneyFormatterTrait;
 
+    use TaxonTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Ordered Product';
 
@@ -56,9 +58,7 @@ class OrderedProductProperties extends Properties
 
         $product = $orderItem->getProduct();
         if (null !== $product) {
-            foreach ($product->getTaxons() as $taxon) {
-                $this->categories[] = (string) $taxon->getName();
-            }
+            $this->categories = self::getTaxonsFromProduct($product);
 
             // populate url
             $this->productUrl = $this->getUrlGenerator()->generate('sylius_shop_product_show', [

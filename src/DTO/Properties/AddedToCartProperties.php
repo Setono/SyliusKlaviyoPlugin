@@ -13,6 +13,8 @@ class AddedToCartProperties extends Properties
 {
     use MoneyFormatterTrait;
 
+    use TaxonTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Added to Cart';
 
@@ -61,16 +63,7 @@ class AddedToCartProperties extends Properties
         }
 
         if (null !== $product) {
-            $mainTaxon = $product->getMainTaxon();
-            if (null !== $mainTaxon) {
-                $this->addedItemCategories[] = (string) $mainTaxon->getName();
-            }
-
-            foreach ($product->getTaxons() as $taxon) {
-                $this->addedItemCategories[] = (string) $taxon->getName();
-            }
-
-            $this->addedItemCategories = array_unique($this->addedItemCategories);
+            $this->addedItemCategories = self::getTaxonsFromProduct($product);
 
             // populate product url
             $this->addedItemUrl = $this->getUrlGenerator()->generate('sylius_shop_product_show', [

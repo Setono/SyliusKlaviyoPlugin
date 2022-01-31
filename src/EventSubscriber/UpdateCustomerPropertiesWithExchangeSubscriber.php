@@ -4,20 +4,17 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
+use Setono\SyliusKlaviyoPlugin\Context\ExchangeContextInterface;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 final class UpdateCustomerPropertiesWithExchangeSubscriber implements EventSubscriberInterface
 {
-    private RequestStack $requestStack;
+    private ExchangeContextInterface $exchangeContext;
 
-    private string $cookieName;
-
-    public function __construct(RequestStack $requestStack, string $cookieName)
+    public function __construct(ExchangeContextInterface $exchangeContext)
     {
-        $this->requestStack = $requestStack;
-        $this->cookieName = $cookieName;
+        $this->exchangeContext = $exchangeContext;
     }
 
     public static function getSubscribedEvents(): array
@@ -29,16 +26,11 @@ final class UpdateCustomerPropertiesWithExchangeSubscriber implements EventSubsc
 
     public function update(PropertiesArePopulatedEvent $event): void
     {
-        $request = $this->requestStack->getMasterRequest();
-        if (null === $request) {
+        $exchange = $this->exchangeContext->getExchange();
+        if (null === $exchange) {
             return;
         }
 
-        $value = $request->cookies->get($this->cookieName);
-        if (!is_string($value)) {
-            return;
-        }
-
-        $event->event->customerProperties->exchangeId = $value;
+        $event->event->customerProperties->exchangeId = $exchange;
     }
 }

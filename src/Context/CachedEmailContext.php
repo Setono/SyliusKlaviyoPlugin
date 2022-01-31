@@ -8,7 +8,7 @@ final class CachedEmailContext implements EmailContextInterface
 {
     private EmailContextInterface $decorated;
 
-    private ?string $email;
+    private ?string $email = '';
 
     public function __construct(EmailContextInterface $decorated)
     {
@@ -17,7 +17,7 @@ final class CachedEmailContext implements EmailContextInterface
 
     public function getEmail(): ?string
     {
-        if (!isset($this->email)) {
+        if ('' === $this->email) {
             $this->email = $this->decorated->getEmail();
         }
 

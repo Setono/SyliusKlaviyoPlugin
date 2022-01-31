@@ -74,7 +74,7 @@ class ViewedProductProperties extends Properties
             $channel = $this->getChannelContext()->getChannel();
             $channelPricing = $productVariant->getChannelPricingForChannel($channel);
             if (null !== $channelPricing) {
-                $this->price = self::formatAmount($channelPricing->getPrice());
+                $this->price = $this->value = self::formatAmount($channelPricing->getPrice());
                 $this->compareAtPrice = self::formatAmount($channelPricing->getOriginalPrice());
             }
         }

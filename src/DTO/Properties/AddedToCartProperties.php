@@ -49,9 +49,11 @@ class AddedToCartProperties extends Properties
         // because of this bug: https://github.com/Sylius/Sylius/issues/9407 we can't just get the order from the order item
         $order = $this->getCartContext()->getCart();
 
+        $this->value = self::formatAmount($order->getItemsTotal());
         $this->addedItemProductName = $orderItem->getVariantName();
         $this->addedItemPrice = self::formatAmount($orderItem->getFullDiscountedUnitPrice());
         $this->addedItemQuantity = $orderItem->getQuantity();
+        $this->checkoutUrl = $this->getUrlGenerator()->generate('sylius_shop_checkout_start');
 
         if (null !== $variant) {
             $this->addedItemProductId = (string) $variant->getId();
@@ -97,7 +99,5 @@ class AddedToCartProperties extends Properties
             $this->itemNames[] = (string) $item->getVariantName();
             $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
         }
-
-        $this->checkoutUrl = $this->getUrlGenerator()->generate('sylius_shop_checkout_start');
     }
 }

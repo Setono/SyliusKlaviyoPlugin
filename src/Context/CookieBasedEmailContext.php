@@ -33,12 +33,12 @@ final class CookieBasedEmailContext implements EmailContextInterface
         }
 
         $cookieValue = $request->cookies->get($this->cookieName);
-        if (!is_string($cookieValue)) {
+        if (!is_string($cookieValue) || '' === $cookieValue) {
             return $this->decorated->getEmail();
         }
 
         $email = base64_decode($cookieValue);
-        if (false === $email) {
+        if (false === $email || '' === $email) {
             return $this->decorated->getEmail();
         }
 

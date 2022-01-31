@@ -61,8 +61,11 @@ final class ConfigurationTest extends TestCase
             'newsletter_checkbox' => [
                 'show_in_checkout' => true,
             ],
-            'email_cookie_name' => 'ssk_e',
-            'tracking_strategy' => 'track_all',
+            'cookies' => [
+                'email' => 'ssk_e',
+                'exchange' => 'ssk_ex',
+            ],
+            'tracking_strategy' => 'track_with_email_or_exchange',
             'credentials' => [
                 'public_token' => 'last value',
                 'private_token' => 'last value',

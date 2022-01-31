@@ -2,19 +2,17 @@
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_klaviyo.strategy.tracking_strategy_registry"
-                 class="Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyRegistry"/>
-
         <service id="setono_sylius_klaviyo.strategy.track_all_tracking_strategy"
                  class="Setono\SyliusKlaviyoPlugin\Strategy\TrackAllTrackingStrategy">
             <tag name="setono_sylius_klaviyo.tracking_strategy" strategy-name="track_all"/>
         </service>
 
         <service id="setono_sylius_klaviyo.strategy.track_with_email_tracking_strategy"
-                 class="Setono\SyliusKlaviyoPlugin\Strategy\TrackWithEmailTrackingStrategy">
+                 class="Setono\SyliusKlaviyoPlugin\Strategy\TrackWithEmailOrExchangeTrackingStrategy">
             <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
+            <argument type="service" id="setono_sylius_klaviyo.context.default_exchange_context"/>
 
-            <tag name="setono_sylius_klaviyo.tracking_strategy" strategy-name="track_with_email"/>
+            <tag name="setono_sylius_klaviyo.tracking_strategy" strategy-name="track_with_email_or_exchange"/>
         </service>
     </services>
 </container>

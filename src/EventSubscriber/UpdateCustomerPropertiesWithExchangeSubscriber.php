@@ -34,10 +34,6 @@ final class UpdateCustomerPropertiesWithExchangeSubscriber implements EventSubsc
             return;
         }
 
-        if (!$request->cookies->has($this->cookieName)) {
-            return;
-        }
-
         $value = $request->cookies->get($this->cookieName);
         if (!is_string($value)) {
             return;

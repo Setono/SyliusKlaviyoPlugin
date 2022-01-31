@@ -58,11 +58,5 @@
             <argument>%setono_sylius_klaviyo.cookie.exchange%</argument>
             <tag name="kernel.event_subscriber"/>
         </service>
-
-        <service id="setono_sylius_klaviyo.event_subscriber.update_customer_properties_with_exchange"
-                 class="Setono\SyliusKlaviyoPlugin\EventSubscriber\UpdateCustomerPropertiesWithExchangeSubscriber">
-            <argument type="service" id="setono_sylius_klaviyo.context.default_exchange_context"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
     </services>
 </container>

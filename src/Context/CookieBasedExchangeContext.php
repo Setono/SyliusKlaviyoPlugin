@@ -30,6 +30,6 @@ final class CookieBasedExchangeContext implements ExchangeContextInterface
 
         $cookieValue = $request->cookies->get($this->cookieName);
 
-        return is_string($cookieValue) ? $cookieValue : $this->decorated->getExchange();
+        return is_string($cookieValue) && '' !== $cookieValue ? $cookieValue : $this->decorated->getExchange();
     }
 }

@@ -15,6 +15,8 @@ class ViewedProductProperties extends Properties
 {
     use MoneyFormatterTrait;
 
+    use TaxonTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Viewed Product';
 
@@ -42,6 +44,11 @@ class ViewedProductProperties extends Properties
         $this->productId = (string) $product->getId();
         $this->sku = $product->getCode();
         $this->productName = $product->getName();
+        $this->categories = self::getTaxonsFromProduct($product);
+
+        if ($product instanceof BrandAwareInterface) {
+            $this->brand = $product->getBrandName();
+        }
 
         // populate url
         $this->url = $this->getUrlGenerator()->generate('sylius_shop_product_show', [

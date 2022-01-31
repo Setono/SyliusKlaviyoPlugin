@@ -13,6 +13,8 @@ class StartedCheckoutProperties extends Properties
 {
     use MoneyFormatterTrait;
 
+    use TaxonTrait;
+
     /** @psalm-readonly */
     public ?string $event = 'Started Checkout';
 
@@ -38,12 +40,6 @@ class StartedCheckoutProperties extends Properties
             $this->items[] = $this->getPropertiesFactory()->create(Item::class, $item);
         }
 
-        foreach ($this->items as $item) {
-            foreach ($item->categories as $category) {
-                $this->categories[] = $category;
-            }
-        }
-
-        $this->categories = array_unique($this->categories);
+        $this->categories = self::getTaxonsFromItems($this->items);
     }
 }

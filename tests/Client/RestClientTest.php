@@ -12,7 +12,7 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
- * @covers \Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClient
+ * @covers \Setono\SyliusKlaviyoPlugin\Client\RestClient
  */
 final class RestClientTest extends TestCase
 {

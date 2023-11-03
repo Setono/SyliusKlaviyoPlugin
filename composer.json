@@ -17,23 +17,31 @@
         "psr/cache": "^1.0",
         "psr/container": "^1.1",
         "psr/event-dispatcher": "^1.0",
-        "psr/log": "^1.1",
+        "psr/log": "^1.1 || ^2.0 || ^3.0",
         "setono/client-id-bundle": "^0.2.0",
         "setono/client-id-contracts": "^0.2",
         "spatie/data-transfer-object": "^1.14 || ^2.8",
+        "sylius/channel": "^1.0",
+        "sylius/channel-bundle": "^1.0",
+        "sylius/core": "^1.0",
+        "sylius/core-bundle": "^1.0",
+        "sylius/customer": "^1.0",
+        "sylius/order": "^1.0",
+        "sylius/product": "^1.0",
         "sylius/resource-bundle": "^1.6",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/console": "^4.4 || ^5.0",
-        "symfony/dependency-injection": "^4.4 || ^5.0",
-        "symfony/event-dispatcher": "^4.4 || ^5.0",
-        "symfony/form": "^4.4 || ^5.0",
-        "symfony/http-client": "^4.4 || ^5.3",
+        "sylius/ui-bundle": "^1.0",
+        "symfony/config": "^5.4 || ^6.0",
+        "symfony/console": "^5.4 || ^6.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0",
+        "symfony/event-dispatcher": "^5.4 || ^6.0",
+        "symfony/form": "^5.4 || ^6.0",
+        "symfony/http-client": "^5.4 || ^6.0",
         "symfony/http-client-contracts": "^2.4",
-        "symfony/http-foundation": "^4.4 || ^5.0.7",
-        "symfony/http-kernel": "^4.4 || ^5.1.5",
-        "symfony/messenger": "^4.4 || ^5.0",
-        "symfony/routing": "^4.4 || ^5.0",
-        "symfony/serializer": "^4.4 || ^5.0",
+        "symfony/http-foundation": "^5.4 || ^6.0",
+        "symfony/http-kernel": "^5.4 || ^6.0",
+        "symfony/messenger": "^5.4 || ^6.0",
+        "symfony/routing": "^5.4 || ^6.0",
+        "symfony/serializer": "^5.4 || ^6.0",
         "webmozart/assert": "^1.10"
     },
     "require-dev": {
@@ -42,18 +50,17 @@
         "lexik/jwt-authentication-bundle": "^2.14",
         "matthiasnoback/symfony-config-test": "^4.3",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
-        "phpunit/phpunit": "^9.5",
-        "psalm/plugin-phpunit": "^0.16.1",
-        "psalm/plugin-symfony": "^3.1",
-        "roave/security-advisories": "dev-latest",
-        "setono/code-quality-pack": "^2.1.3",
+        "php-http/message-factory": "^1.1",
+        "phpunit/phpunit": "^9.6",
+        "psalm/plugin-phpunit": "^0.18",
+        "setono/code-quality-pack": "^2.4",
         "sylius/admin-api-bundle": "^1.10",
-        "sylius/sylius": "~1.10.4",
-        "symfony/debug-bundle": "^5.3",
-        "symfony/dotenv": "^5.3",
-        "symfony/intl": "^5.3",
-        "symfony/property-info": "^5.3",
-        "symfony/web-profiler-bundle": "^5.3",
+        "sylius/sylius": "~1.10.14",
+        "symfony/debug-bundle": "^5.4 || ^6.0",
+        "symfony/dotenv": "^5.4 || ^6.0",
+        "symfony/intl": "^5.4 || ^6.0",
+        "symfony/property-info": "^5.4 || ^6.0",
+        "symfony/web-profiler-bundle": "^5.4 || ^6.0",
         "symfony/webpack-encore-bundle": "^1.12"
     },
     "prefer-stable": true,
@@ -74,22 +81,13 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "ergebnis/composer-normalize": true,
-            "symfony/thanks": true
+            "symfony/thanks": false
         },
         "sort-packages": true
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
     "scripts": {
-        "analyse": [
-            "@ensure-test-container-exists",
-            "psalm"
-        ],
+        "analyse": "psalm",
         "check-style": "ecs check",
-        "ensure-test-container-exists": "[[ -f tests/Application/var/cache/test/Tests_Setono_SyliusKlaviyoPlugin_Application_KernelTestDebugContainer.xml ]] || tests/Application/bin/console cache:warmup --env=test",
         "fix-style": "ecs check --fix",
         "phpunit": "phpunit"
     }

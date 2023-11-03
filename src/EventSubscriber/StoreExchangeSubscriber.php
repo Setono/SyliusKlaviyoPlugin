@@ -29,7 +29,7 @@ final class StoreExchangeSubscriber implements EventSubscriberInterface
 
     public function store(ResponseEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

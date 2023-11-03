@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\EventListener\Doctrine;
 
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Setono\SyliusKlaviyoPlugin\Message\Command\SubscribeCustomer;
 use Setono\SyliusKlaviyoPlugin\Model\MemberListInterface;
@@ -31,9 +31,9 @@ final class SubscribeCustomerListener
         $this->memberListRepository = $memberListRepository;
     }
 
-    public function postPersist(LifecycleEventArgs $eventArgs): void
+    public function postPersist(PostPersistEventArgs $eventArgs): void
     {
-        $customer = $eventArgs->getEntity();
+        $customer = $eventArgs->getObject();
         if (!$customer instanceof CustomerInterface) {
             return;
         }
@@ -47,7 +47,7 @@ final class SubscribeCustomerListener
 
     public function preUpdate(PreUpdateEventArgs $eventArgs): void
     {
-        $customer = $eventArgs->getEntity();
+        $customer = $eventArgs->getObject();
         if (!$customer instanceof CustomerInterface) {
             return;
         }

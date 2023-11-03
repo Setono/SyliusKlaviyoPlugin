@@ -44,7 +44,7 @@ final class StartedCheckoutSubscriber extends AbstractEventSubscriber
 
     public function track(RequestEvent $requestEvent): void
     {
-        if (!$requestEvent->isMasterRequest()) {
+        if (!$requestEvent->isMainRequest()) {
             return;
         }
 

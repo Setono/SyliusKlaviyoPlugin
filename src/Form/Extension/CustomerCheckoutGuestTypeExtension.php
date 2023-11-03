@@ -19,7 +19,7 @@ final class CustomerCheckoutGuestTypeExtension extends AbstractTypeExtension
         ]);
     }
 
-    public static function getExtendedTypes(): iterable
+    public static function getExtendedTypes(): \Generator
     {
         yield CustomerCheckoutGuestType::class;
     }

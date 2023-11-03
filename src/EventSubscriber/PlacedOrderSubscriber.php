@@ -110,7 +110,7 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
     {
         $request = $requestEvent->getRequest();
 
-        if (!$requestEvent->isMasterRequest()) {
+        if (!$requestEvent->isMainRequest()) {
             return null;
         }
 

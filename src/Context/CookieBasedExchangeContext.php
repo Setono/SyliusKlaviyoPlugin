@@ -23,7 +23,7 @@ final class CookieBasedExchangeContext implements ExchangeContextInterface
 
     public function getExchange(): ?string
     {
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->requestStack->getMainRequest();
         if (null === $request) {
             return $this->decorated->getExchange();
         }

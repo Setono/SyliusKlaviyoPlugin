@@ -19,10 +19,12 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('setono_sylius_klaviyo');
+
+        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
         /**
-         * @psalm-suppress MixedMethodCall,PossiblyUndefinedMethod,PossiblyNullReference
+         * @psalm-suppress MixedMethodCall,PossiblyUndefinedMethod,PossiblyNullReference,UndefinedMethod
          */
         $rootNode
             ->children()
@@ -79,11 +81,7 @@ final class Configuration implements ConfigurationInterface
 
     private function addResourcesSection(ArrayNodeDefinition $node): void
     {
-        /**
-         * @psalm-suppress MixedMethodCall
-         * @psalm-suppress PossiblyUndefinedMethod
-         * @psalm-suppress PossiblyNullReference
-         */
+        /** @psalm-suppress MixedMethodCall,UndefinedMethod,PossiblyUndefinedMethod,PossiblyNullReference */
         $node
             ->children()
                 ->arrayNode('resources')
@@ -101,13 +99,6 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('form')->defaultValue(MemberListType::class)->end()
                                         ->scalarNode('model')->defaultValue(MemberList::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->defaultValue(MemberListRepository::class)->cannotBeEmpty()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()
-            ->end()
         ;
     }
 }

@@ -4,6 +4,10 @@
     totallyTyped="true"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedPsalmSuppress="false"
+    findUnusedBaselineEntry="true"
+    findUnusedVariablesAndParams="false"
+    findUnusedCode="false"
 >
     <projectFiles>
         <directory name="src"/>
@@ -14,28 +18,15 @@
         </ignoreFiles>
     </projectFiles>
     <plugins>
-        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
-            <containerXml>tests/Application/var/cache/test/Tests_Setono_SyliusKlaviyoPlugin_Application_KernelTestDebugContainer.xml</containerXml>
-        </pluginClass>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
     <issueHandlers>
-        <DeprecatedMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\HttpKernel\Event\KernelEvent::isMasterRequest"/>
-                <referencedMethod name="Symfony\Component\HttpFoundation\RequestStack::getMasterRequest"/>
-            </errorLevel>
-        </DeprecatedMethod>
         <MissingConstructor>
             <errorLevel type="suppress">
                 <directory name="src/DTO/Properties"/>
             </errorLevel>
         </MissingConstructor>
-        <PluginIssue name="QueryBuilderSetParameter">
-            <errorLevel type="suppress">
-                <directory name="src/Doctrine/ORM"/>
-            </errorLevel>
-        </PluginIssue>
+        <PluginIssue name="QueryBuilderSetParameter" errorLevel="suppress"/>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
                 <directory name="src/DTO/Response"/>
@@ -43,6 +34,7 @@
                 <file name="src/Context/CachedEmailContext.php"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
-        <UnnecessaryVarAnnotation errorLevel="suppress"/> <!-- The reason we use these @var annotations is to help PhpStorm -->
+        <!-- The reason we use these @var annotations is to help PhpStorm -->
+        <UnnecessaryVarAnnotation errorLevel="suppress"/>
     </issueHandlers>
 </psalm>

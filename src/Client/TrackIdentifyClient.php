@@ -20,8 +20,12 @@ final class TrackIdentifyClient implements TrackIdentifyClientInterface
 
     private string $token;
 
-    public function __construct(HttpClientInterface $httpClient, SerializerInterface $serializer, string $baseUri, string $token)
-    {
+    public function __construct(
+        HttpClientInterface $httpClient,
+        SerializerInterface $serializer,
+        string $baseUri,
+        string $token
+    ) {
         $this->httpClient = $httpClient;
         $this->serializer = $serializer;
         $this->baseUri = rtrim($baseUri, '/');
@@ -45,6 +49,8 @@ final class TrackIdentifyClient implements TrackIdentifyClientInterface
         ]);
 
         Assert::same($response->getStatusCode(), 200);
-        Assert::same($response->getContent(), '1');
+
+        $content = $response->getContent();
+        Assert::same($content, '1', sprintf('Expected response to be "1", got "%s"', $content));
     }
 }

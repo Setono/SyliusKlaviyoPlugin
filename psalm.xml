@@ -4,6 +4,10 @@
     totallyTyped="true"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedPsalmSuppress="false"
+    findUnusedBaselineEntry="true"
+    findUnusedVariablesAndParams="false"
+    findUnusedCode="false"
 >
     <projectFiles>
         <directory name="src"/>

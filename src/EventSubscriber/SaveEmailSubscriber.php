@@ -58,7 +58,7 @@ final class SaveEmailSubscriber implements EventSubscriberInterface
 
     public function saveEmail(ResponseEvent $event): void
     {
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMainRequest()) {
             return;
         }
 

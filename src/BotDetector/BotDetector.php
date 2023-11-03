@@ -24,7 +24,7 @@ final class BotDetector implements BotDetectorInterface
     public function isBot(string $userAgent = null): bool
     {
         if (null === $userAgent) {
-            $request = $this->requestStack->getMasterRequest();
+            $request = $this->requestStack->getMainRequest();
             if (null === $request) {
                 return false;
             }

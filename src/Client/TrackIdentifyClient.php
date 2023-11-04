@@ -51,6 +51,6 @@ final class TrackIdentifyClient implements TrackIdentifyClientInterface
         Assert::same($response->getStatusCode(), 200);
 
         $content = $response->getContent();
-        Assert::same($content, '1', sprintf('Expected response to be "1", got "%s"', $content));
+        Assert::same($content, '1', sprintf('Expected response to be "1", got "%s". Posted JSON was: %s', $content, $json));
     }
 }

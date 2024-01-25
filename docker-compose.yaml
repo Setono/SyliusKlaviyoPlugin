@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    mysql:
+        image: mariadb:latest
+        ports: [ 3306 ]
+        environment:
+            MARIADB_PASSWORD: dev
+            MARIADB_USER: user
+            MARIADB_ROOT_PASSWORD: root
+            MARIADB_DATABASE: mysql_app
+        platform: linux/amd64
+    mailer:
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'  # disable saving logs
+        ports:
+            - 1025
+            - 8025

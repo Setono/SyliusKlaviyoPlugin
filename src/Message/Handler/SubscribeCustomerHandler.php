@@ -8,9 +8,10 @@ use Setono\SyliusKlaviyoPlugin\Client\RestClientInterface;
 use Setono\SyliusKlaviyoPlugin\Message\Command\SubscribeCustomer;
 use Sylius\Component\Core\Repository\CustomerRepositoryInterface;
 use Sylius\Component\Customer\Model\CustomerInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class SubscribeCustomerHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class SubscribeCustomerHandler
 {
     private RestClientInterface $client;
 

@@ -7,7 +7,9 @@ namespace Setono\SyliusKlaviyoPlugin\Repository;
 use Setono\SyliusKlaviyoPlugin\Model\MemberListInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-
+/**
+ * @extends RepositoryInterface<MemberListInterface>
+ */
 interface MemberListRepositoryInterface extends RepositoryInterface
 {
     public function findOneByKlaviyoId(string $klaviyoId): ?MemberListInterface;

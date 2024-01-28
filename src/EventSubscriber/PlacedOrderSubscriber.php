@@ -35,7 +35,7 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
         BotDetectorInterface $botDetector,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
     ) {
         parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
         $this->orderRepository = $orderRepository;

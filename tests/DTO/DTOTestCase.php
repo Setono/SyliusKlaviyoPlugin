@@ -36,7 +36,7 @@ abstract class DTOTestCase extends TestCase
             $finder->files()->in(__DIR__ . '/../../src/Resources/config/serialization');
             $files = array_map(
                 static fn (\SplFileInfo $file) => new XmlFileLoader($file->getRealPath()),
-                iterator_to_array($finder)
+                iterator_to_array($finder),
             );
 
             $classMetadataFactory = new ClassMetadataFactory(new LoaderChain($files));

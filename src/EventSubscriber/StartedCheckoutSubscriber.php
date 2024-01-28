@@ -28,7 +28,7 @@ final class StartedCheckoutSubscriber extends AbstractEventSubscriber
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
         BotDetectorInterface $botDetector,
-        CartContextInterface $cartContext
+        CartContextInterface $cartContext,
     ) {
         parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
 

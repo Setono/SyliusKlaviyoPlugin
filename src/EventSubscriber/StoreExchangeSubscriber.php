@@ -45,7 +45,7 @@ final class StoreExchangeSubscriber implements EventSubscriberInterface
         }
 
         $event->getResponse()->headers->setCookie(
-            Cookie::create($this->cookieName, $exchange, new \DateTimeImmutable('+1 year'))
+            Cookie::create($this->cookieName, $exchange, new \DateTimeImmutable('+1 year')),
         );
     }
 }

@@ -35,7 +35,7 @@ final class ConfigurationTest extends TestCase
             [
                 [], // no values at all
             ],
-            'The child config "credentials" under "setono_sylius_klaviyo" must be configured.'
+            'The child config "credentials" under "setono_sylius_klaviyo" must be configured.',
         );
     }
 

@@ -67,7 +67,7 @@ final class Item extends Base
 
             $this->imageUrl = $this->getCacheManager()->getBrowserPath(
                 (string) $image->getPath(),
-                'sylius_shop_product_large_thumbnail'
+                'sylius_shop_product_large_thumbnail',
             );
 
             // populate brand

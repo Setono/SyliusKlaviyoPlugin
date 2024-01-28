@@ -70,7 +70,7 @@ final class SaveEmailSubscriber implements EventSubscriberInterface
 
         $response = $event->getResponse();
         $response->headers->setCookie(
-            Cookie::create($this->cookieName, base64_encode($email), new \DateTimeImmutable('+360 days'))
+            Cookie::create($this->cookieName, base64_encode($email), new \DateTimeImmutable('+360 days')),
         );
     }
 }

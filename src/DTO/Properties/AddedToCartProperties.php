@@ -12,7 +12,6 @@ use Webmozart\Assert\Assert;
 class AddedToCartProperties extends Properties
 {
     use MoneyFormatterTrait;
-
     use TaxonTrait;
 
     /** @psalm-readonly */
@@ -83,7 +82,7 @@ class AddedToCartProperties extends Properties
 
             $this->addedItemImageUrl = $this->getCacheManager()->getBrowserPath(
                 (string) $image->getPath(),
-                'sylius_shop_product_large_thumbnail'
+                'sylius_shop_product_large_thumbnail',
             );
         }
 

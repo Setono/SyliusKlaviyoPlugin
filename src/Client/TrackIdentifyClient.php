@@ -24,7 +24,7 @@ final class TrackIdentifyClient implements TrackIdentifyClientInterface
         HttpClientInterface $httpClient,
         SerializerInterface $serializer,
         string $baseUri,
-        string $token
+        string $token,
     ) {
         $this->httpClient = $httpClient;
         $this->serializer = $serializer;

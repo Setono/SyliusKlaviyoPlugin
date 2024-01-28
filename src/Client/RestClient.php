@@ -32,7 +32,7 @@ final class RestClient implements RestClientInterface
                 'headers' => [
                     'Accept' => 'application/json',
                 ],
-            ]
+            ],
         )->toArray();
     }
 
@@ -48,7 +48,7 @@ final class RestClient implements RestClientInterface
                     'Accept' => 'application/json',
                 ],
                 'json' => $data,
-            ]
+            ],
         )->toArray();
     }
 }

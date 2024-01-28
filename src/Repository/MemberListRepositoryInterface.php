@@ -7,6 +7,7 @@ namespace Setono\SyliusKlaviyoPlugin\Repository;
 use Setono\SyliusKlaviyoPlugin\Model\MemberListInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+
 /**
  * @extends RepositoryInterface<MemberListInterface>
  */

@@ -12,9 +12,12 @@ final class TrackEventHandler implements MessageHandlerInterface
 {
     private TrackIdentifyClientInterface $client;
 
+    private bool $silenceExceptions;
+
     public function __construct(TrackIdentifyClientInterface $client, bool $silenceExceptions = false)
     {
         $this->client = $client;
+        $this->silenceExceptions = $silenceExceptions;
     }
 
     public function __invoke(TrackEvent $message): void

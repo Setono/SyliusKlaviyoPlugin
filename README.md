@@ -95,10 +95,6 @@ framework:
 After setup you want to associate channels with lists in Klaviyo. Go to `/admin/klaviyo/member-lists/`
 and synchronize the lists. After that edit the lists and enable channels on the lists.
 
-//todo:
-Import lists using `setono:sylius-klaviyo:synchronize:lists` command
-
-
 [ico-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/license

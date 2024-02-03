@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="true"/>
+
+        <service id="setono_sylius_klaviyo.controller.action.synchronize_klaviyo_member_lists"
+                 class="Setono\SyliusKlaviyoPlugin\Controller\Action\SynchronizeKlaviyoMemberListsAction">
+            <argument type="service" id="router"/>
+            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="setono_sylius_klaviyo.synchronizer.list"/>
+        </service>
+    </services>
+</container>

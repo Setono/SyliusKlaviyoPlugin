@@ -32,7 +32,7 @@ abstract class AbstractEventSubscriber implements EventSubscriberInterface
         PropertiesFactoryInterface $propertiesFactory,
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
-        BotDetectorInterface $botDetector
+        BotDetectorInterface $botDetector,
     ) {
         $this->commandBus = $commandBus;
         $this->eventFactory = $eventFactory;

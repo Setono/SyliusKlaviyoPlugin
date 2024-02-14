@@ -26,7 +26,7 @@ final class ListSynchronizer implements ListSynchronizerInterface
     public function __construct(
         RestClientInterface $restClient,
         MemberListRepositoryInterface $listRepository,
-        FactoryInterface $listFactory
+        FactoryInterface $listFactory,
     ) {
         $this->logger = new NullLogger();
         $this->restClient = $restClient;

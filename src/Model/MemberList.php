@@ -22,7 +22,6 @@ class MemberList implements MemberListInterface, ChannelsAwareInterface
 
     /**
      * @psalm-var Collection<array-key, BaseChannelInterface>
-     *
      * @var Collection|BaseChannelInterface[]
      */
     protected Collection $channels;

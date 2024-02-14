@@ -24,7 +24,7 @@ final class SubscribeCustomerListener
     public function __construct(
         MessageBusInterface $commandBus,
         ChannelContextInterface $channelContext,
-        MemberListRepositoryInterface $memberListRepository
+        MemberListRepositoryInterface $memberListRepository,
     ) {
         $this->commandBus = $commandBus;
         $this->channelContext = $channelContext;
@@ -75,7 +75,7 @@ final class SubscribeCustomerListener
             static function (MemberListInterface $list): string {
                 return (string) $list->getKlaviyoId();
             },
-            $this->memberListRepository->findByChannel($this->channelContext->getChannel())
+            $this->memberListRepository->findByChannel($this->channelContext->getChannel()),
         );
     }
 }

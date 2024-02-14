@@ -30,7 +30,7 @@ final class EventFactory implements EventFactoryInterface
         EmailContextInterface $emailContext,
         ExchangeContextInterface $exchangeContext,
         TrackingStrategyInterface $trackingStrategy,
-        PropertiesFactoryInterface $propertiesFactory
+        PropertiesFactoryInterface $propertiesFactory,
     ) {
         $this->clientIdProvider = $clientIdProvider;
         $this->emailContext = $emailContext;

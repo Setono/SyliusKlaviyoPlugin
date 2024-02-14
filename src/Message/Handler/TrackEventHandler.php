@@ -6,9 +6,10 @@ namespace Setono\SyliusKlaviyoPlugin\Message\Handler;
 
 use Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClientInterface;
 use Setono\SyliusKlaviyoPlugin\Message\Command\TrackEvent;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-final class TrackEventHandler implements MessageHandlerInterface
+#[AsMessageHandler]
+final class TrackEventHandler
 {
     private TrackIdentifyClientInterface $client;
 

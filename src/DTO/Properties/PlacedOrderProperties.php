@@ -10,7 +10,6 @@ use Sylius\Component\Core\Model\OrderInterface;
 class PlacedOrderProperties extends Properties
 {
     use MoneyFormatterTrait;
-
     use TaxonTrait;
 
     /** @psalm-readonly */

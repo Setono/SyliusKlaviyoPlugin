@@ -1,5 +1,4 @@
 framework:
-    assets: true
     secret: '%env(APP_SECRET)%'
     form: true
     csrf_protection: true

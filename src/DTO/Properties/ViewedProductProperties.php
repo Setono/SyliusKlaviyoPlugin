@@ -14,7 +14,6 @@ use Webmozart\Assert\Assert;
 class ViewedProductProperties extends Properties
 {
     use MoneyFormatterTrait;
-
     use TaxonTrait;
 
     /** @psalm-readonly */

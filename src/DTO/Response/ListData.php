@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\DTO\Response;
 
-use Spatie\DataTransferObject\FlexibleDataTransferObject;
-
 /**
- * Represents a list in the REST API: https://apidocs.klaviyo.com/reference/lists-segments#get-lists
+ * Represents a list in the REST API: https://developers.klaviyo.com/en/reference/get_lists
  */
-final class ListData extends FlexibleDataTransferObject
+final class ListData
 {
     public string $list_id;
 

@@ -4,52 +4,50 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
     <class name="Setono\SyliusKlaviyoPlugin\DTO\Properties\CustomerProperties">
-        <attribute name="id" serialized-name="$id">
+        <attribute name="externalId" serialized-name="external_id">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="exchangeId" serialized-name="$exchange_id">
+        <attribute name="email" serialized-name="email">
+            <group>setono:sylius-klaviyo:event</group>
+            <group>setono:sylius-klaviyo:subscription</group>
+        </attribute>
+
+        <attribute name="firstName" serialized-name="first_name">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="email" serialized-name="$email">
+        <attribute name="lastName" serialized-name="last_name">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="firstName" serialized-name="$first_name">
+        <attribute name="phoneNumber" serialized-name="phone_number">
+            <group>setono:sylius-klaviyo:event</group>
+            <group>setono:sylius-klaviyo:subscription</group>
+        </attribute>
+
+        <attribute name="location" serialized-name="location">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="lastName" serialized-name="$last_name">
+        <attribute name="image" serialized-name="image">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="phoneNumber" serialized-name="$phone_number">
+        <attribute name="title" serialized-name="title">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="zip" serialized-name="$zip">
+        <attribute name="organization" serialized-name="organization">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="city" serialized-name="$city">
+        <attribute name="properties" serialized-name="properties">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="region" serialized-name="$region">
-            <group>setono:sylius-klaviyo:event</group>
-        </attribute>
-
-        <attribute name="country" serialized-name="$country">
-            <group>setono:sylius-klaviyo:event</group>
-        </attribute>
-
-        <attribute name="image" serialized-name="$image">
-            <group>setono:sylius-klaviyo:event</group>
-        </attribute>
-
-        <attribute name="consent" serialized-name="$consent">
-            <group>setono:sylius-klaviyo:event</group>
+        <attribute name="subscriptions" serialized-name="subscriptions">
+            <group>setono:sylius-klaviyo:subscription</group>
         </attribute>
     </class>
 </serializer>

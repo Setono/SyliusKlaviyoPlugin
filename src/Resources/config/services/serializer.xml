@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_klaviyo.serializer.event_normalizer"
+                 class="Setono\SyliusKlaviyoPlugin\Serializer\EventNormalizer">
+            <argument type="service" id="serializer.normalizer.object"/>
+            <tag name="serializer.normalizer"/>
+        </service>
+
+        <service id="setono_sylius_klaviyo.serializer.profile_normalizer"
+                 class="Setono\SyliusKlaviyoPlugin\Serializer\ProfileNormalizer">
+            <argument type="service" id="serializer.normalizer.object"/>
+            <tag name="serializer.normalizer"/>
+        </service>
+
+        <service id="setono_sylius_klaviyo.strategy.track_with_email_tracking_strategy"
+                 class="Setono\SyliusKlaviyoPlugin\Strategy\TrackWithEmailOrExchangeTrackingStrategy">
+            <argument type="service" id="setono_sylius_klaviyo.context.default_email_context"/>
+            <argument type="service" id="setono_sylius_klaviyo.context.default_exchange_context"/>
+
+            <tag name="setono_sylius_klaviyo.tracking_strategy" strategy-name="track_with_email_or_exchange"/>
+        </service>
+    </services>
+</container>

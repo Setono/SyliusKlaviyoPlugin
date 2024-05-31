@@ -8,7 +8,7 @@
         <service id="setono_sylius_klaviyo.client.rest"
                  class="Setono\SyliusKlaviyoPlugin\Client\RestClient">
             <argument type="service" id="http_client"/>
-            <argument>https://a.klaviyo.com/api/v2</argument>
+            <argument>https://a.klaviyo.com/api</argument>
             <argument>%setono_sylius_klaviyo.private_token%</argument>
         </service>
 
@@ -17,10 +17,8 @@
 
         <service id="setono_sylius_klaviyo.client.track_identify"
                  class="Setono\SyliusKlaviyoPlugin\Client\TrackIdentifyClient">
-            <argument type="service" id="http_client"/>
+            <argument type="service" id="setono_sylius_klaviyo.client.rest"/>
             <argument type="service" id="serializer"/>
-            <argument>https://a.klaviyo.com/api</argument>
-            <argument>%setono_sylius_klaviyo.public_token%</argument>
         </service>
     </services>
 </container>

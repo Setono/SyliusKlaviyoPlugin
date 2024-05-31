@@ -13,6 +13,8 @@
                  class="Setono\SyliusKlaviyoPlugin\Message\Handler\SubscribeCustomerHandler">
             <argument type="service" id="setono_sylius_klaviyo.client.rest"/>
             <argument type="service" id="sylius.repository.customer"/>
+            <argument type="service" id="serializer"/>
+            <argument type="service" id="setono_sylius_klaviyo.dto.properties.factory.properties"/>
 
             <tag name="messenger.message_handler"/>
         </service>

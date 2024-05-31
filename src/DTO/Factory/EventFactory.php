@@ -48,10 +48,9 @@ final class EventFactory implements EventFactoryInterface
 
         // if we want to be able to track visitors without having an email or an exchange, we need to provide our own id
         if ($this->trackingStrategy->track() && null === $this->emailContext->getEmail() && null === $this->exchangeContext->getExchange()) {
-            $event->customerProperties->id = (string) $this->clientIdProvider->getClientId();
+            $event->customerProperties->externalId = (string) $this->clientIdProvider->getClientId();
         }
         $event->customerProperties->email = $this->emailContext->getEmail();
-        $event->customerProperties->exchangeId = $this->exchangeContext->getExchange();
 
         return $event;
     }

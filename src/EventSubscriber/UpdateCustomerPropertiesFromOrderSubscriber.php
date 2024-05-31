@@ -5,12 +5,23 @@ declare(strict_types=1);
 namespace Setono\SyliusKlaviyoPlugin\EventSubscriber;
 
 use Setono\SyliusKlaviyoPlugin\DTO\Properties\CustomerProperties;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Factory\PropertiesFactoryInterface;
 use Setono\SyliusKlaviyoPlugin\Event\PropertiesArePopulatedEvent;
 use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Setono\SyliusKlaviyoPlugin\DTO\Properties\Location;
 
 final class UpdateCustomerPropertiesFromOrderSubscriber implements EventSubscriberInterface
 {
+    private PropertiesFactoryInterface $propertiesFactory;
+
+    public function __construct(
+        PropertiesFactoryInterface $propertiesFactory,
+    )
+    {
+        $this->propertiesFactory = $propertiesFactory;
+    }
+
     public static function getSubscribedEvents(): array
     {
         return [
@@ -37,8 +48,6 @@ final class UpdateCustomerPropertiesFromOrderSubscriber implements EventSubscrib
         $customerProperties->firstName = $address->getFirstName();
         $customerProperties->lastName = $address->getLastName();
         $customerProperties->phoneNumber = $address->getPhoneNumber();
-        $customerProperties->zip = $address->getPostcode();
-        $customerProperties->city = $address->getCity();
-        $customerProperties->country = $address->getCountryCode();
+        $customerProperties->location = $this->propertiesFactory->create(Location::class, $address);
     }
 }

@@ -20,7 +20,6 @@
         "psr/log": "^1.1 || ^2.0 || ^3.0",
         "setono/client-id-bundle": "^0.2.0",
         "setono/client-id-contracts": "^0.2",
-        "spatie/data-transfer-object": "^1.14 || ^2.8",
         "sylius/channel": "^1.0",
         "sylius/channel-bundle": "^1.0",
         "sylius/core": "^1.0",

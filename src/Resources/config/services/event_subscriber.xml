@@ -50,6 +50,7 @@
 
         <service id="setono_sylius_klaviyo.event_subscriber.update_customer_properties_from_order"
                  class="Setono\SyliusKlaviyoPlugin\EventSubscriber\UpdateCustomerPropertiesFromOrderSubscriber">
+            <argument type="service" id="setono_sylius_klaviyo.dto.properties.factory.properties"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

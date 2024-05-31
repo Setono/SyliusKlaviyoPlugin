@@ -10,11 +10,6 @@ use Webmozart\Assert\Assert;
 
 final class Event
 {
-    /**
-     * This property is automatically populated when you send the event to Klaviyo
-     */
-    public ?string $token = null;
-
     public string $event;
 
     public CustomerProperties $customerProperties;

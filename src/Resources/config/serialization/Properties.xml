@@ -4,12 +4,5 @@
             xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
 >
     <class name="Setono\SyliusKlaviyoPlugin\DTO\Properties\Properties">
-        <attribute name="eventId" serialized-name="$event_id">
-            <group>setono:sylius-klaviyo:event</group>
-        </attribute>
-
-        <attribute name="value" serialized-name="$value">
-            <group>setono:sylius-klaviyo:event</group>
-        </attribute>
     </class>
 </serializer>

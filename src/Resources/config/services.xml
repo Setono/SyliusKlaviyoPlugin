@@ -12,6 +12,7 @@
         <import resource="services/form.xml"/>
         <import resource="services/menu.xml"/>
         <import resource="services/message.xml"/>
+        <import resource="services/serializer.xml"/>
         <import resource="services/strategy.xml"/>
         <import resource="services/synchronizer.xml"/>
     </imports>

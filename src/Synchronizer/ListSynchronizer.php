@@ -39,12 +39,16 @@ final class ListSynchronizer implements ListSynchronizerInterface
         $this->logger->debug('Synchronizing lists from Klaviyo');
 
         $ids = [];
-        $klaviyoLists = $this->restClient->get('lists');
-        foreach ($klaviyoLists as $klaviyoList) {
+        $klaviyoLists = $this->restClient->get('lists')->toArray();
+
+        foreach ($klaviyoLists['data'] as $klaviyoList) {
             Assert::isArray($klaviyoList);
-            $dto = new ListData($klaviyoList);
+            $dto = new ListData();
+            $dto->list_id = $klaviyoList['id'];
+            $dto->list_name = $klaviyoList['attributes']['name'];
 
             $entity = $this->listRepository->findOneByKlaviyoId($dto->list_id);
+
             if (null === $entity) {
                 /** @var MemberListInterface $entity */
                 $entity = $this->listFactory->createNew();

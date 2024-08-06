@@ -12,3 +12,4 @@ setono_sylius_klaviyo:
         member_list_header: Lists
         member_list_subheader: Manage your Klaviyo lists
         member_lists: Lists
+        synchronize_member_lists: Synchronize lists

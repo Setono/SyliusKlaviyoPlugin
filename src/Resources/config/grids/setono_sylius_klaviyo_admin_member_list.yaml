@@ -13,3 +13,11 @@ sylius_grid:
                 item:
                     update:
                         type: update
+                main:
+                    setono_sylius_klaviyo_admin_member_list_synchronize:
+                        type: default
+                        icon: redo
+                        label: setono_sylius_klaviyo.ui.synchronize_member_lists
+                        options:
+                            link:
+                                route: synchronize_klaviyo_member_lists

@@ -1,0 +1,3 @@
+setono_sylius_klaviyo:
+    member_list:
+        synchronized: "Lists have been synchronized"

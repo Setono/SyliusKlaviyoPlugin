@@ -11,3 +11,13 @@ setono_sylius_klaviyo_admin_member_list:
                 header: setono_sylius_klaviyo.ui.member_list_header
                 subheader: setono_sylius_klaviyo.ui.member_list_subheader
     type: sylius.resource
+
+
+synchronize_klaviyo_member_lists:
+    path: /klaviyo/member-lists/synchronize
+    methods: [ GET ]
+    defaults:
+        _controller: setono_sylius_klaviyo.controller.action.synchronize_klaviyo_member_lists
+        _sylius:
+            section: admin
+            permission: true

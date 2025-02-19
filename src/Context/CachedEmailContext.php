@@ -6,13 +6,10 @@ namespace Setono\SyliusKlaviyoPlugin\Context;
 
 final class CachedEmailContext implements EmailContextInterface
 {
-    private EmailContextInterface $decorated;
-
     private ?string $email = '';
 
-    public function __construct(EmailContextInterface $decorated)
+    public function __construct(private readonly EmailContextInterface $decorated)
     {
-        $this->decorated = $decorated;
     }
 
     public function getEmail(): ?string

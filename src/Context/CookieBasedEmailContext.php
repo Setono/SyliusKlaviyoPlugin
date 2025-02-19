@@ -8,17 +8,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class CookieBasedEmailContext implements EmailContextInterface
 {
-    private EmailContextInterface $decorated;
-
-    private RequestStack $requestStack;
-
-    private string $cookieName;
-
-    public function __construct(EmailContextInterface $decorated, RequestStack $requestStack, string $cookieName)
+    public function __construct(private readonly EmailContextInterface $decorated, private readonly RequestStack $requestStack, private readonly string $cookieName)
     {
-        $this->decorated = $decorated;
-        $this->requestStack = $requestStack;
-        $this->cookieName = $cookieName;
     }
 
     public function getEmail(): ?string

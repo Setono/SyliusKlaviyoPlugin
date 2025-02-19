@@ -6,13 +6,10 @@ namespace Setono\SyliusKlaviyoPlugin\Context;
 
 final class CachedExchangeContext implements ExchangeContextInterface
 {
-    private ExchangeContextInterface $decorated;
-
     private ?string $exchange = '';
 
-    public function __construct(ExchangeContextInterface $decorated)
+    public function __construct(private readonly ExchangeContextInterface $decorated)
     {
-        $this->decorated = $decorated;
     }
 
     public function getExchange(): ?string

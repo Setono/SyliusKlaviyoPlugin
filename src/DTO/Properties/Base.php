@@ -17,18 +17,14 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 abstract class Base
 {
-    protected ContainerInterface $serviceLocator;
-
     /**
      * @param array<array-key, object> $hydratableObjects
      */
-    public function __construct(ContainerInterface $serviceLocator, array $hydratableObjects = [])
+    public function __construct(protected ContainerInterface $serviceLocator, array $hydratableObjects = [])
     {
-        $this->serviceLocator = $serviceLocator;
-
         $refl = new \ReflectionClass($this);
         foreach ($refl->getMethods() as $method) {
-            if (strpos($method->getName(), 'populate') !== 0) {
+            if (!str_starts_with($method->getName(), 'populate')) {
                 continue;
             }
 

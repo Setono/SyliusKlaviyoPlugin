@@ -11,11 +11,8 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 final class TrackEventHandler
 {
-    private TrackIdentifyClientInterface $client;
-
-    public function __construct(TrackIdentifyClientInterface $client)
+    public function __construct(private readonly TrackIdentifyClientInterface $client)
     {
-        $this->client = $client;
     }
 
     public function __invoke(TrackEvent $message): void

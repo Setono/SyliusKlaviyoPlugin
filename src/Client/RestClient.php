@@ -9,20 +9,11 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final class RestClient implements RestClientInterface
 {
-    private HttpClientInterface $httpClient;
+    private readonly string $baseUri;
 
-    private string $baseUri;
-
-    private string $token;
-
-    private string $revision;
-
-    public function __construct(HttpClientInterface $httpClient, string $baseUri, string $token, string $revision = '2024-05-15')
+    public function __construct(private readonly HttpClientInterface $httpClient, string $baseUri, private readonly string $token, private readonly string $revision = '2024-05-15')
     {
-        $this->httpClient = $httpClient;
         $this->baseUri = rtrim($baseUri, '/');
-        $this->token = $token;
-        $this->revision = $revision;
     }
 
     public function get(string $endpoint): ResponseInterface

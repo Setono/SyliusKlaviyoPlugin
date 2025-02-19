@@ -17,24 +17,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[AsMessageHandler]
 final class SubscribeCustomerHandler
 {
-    private RestClientInterface $client;
-
-    private CustomerRepositoryInterface $customerRepository;
-
-    private SerializerInterface $serializer;
-
-    private PropertiesFactoryInterface $propertiesFactory;
-
-    public function __construct(
-        RestClientInterface $client,
-        CustomerRepositoryInterface $customerRepository,
-        SerializerInterface $serializer,
-        PropertiesFactoryInterface $propertiesFactory,
-    ) {
-        $this->client = $client;
-        $this->customerRepository = $customerRepository;
-        $this->serializer = $serializer;
-        $this->propertiesFactory = $propertiesFactory;
+    public function __construct(private readonly RestClientInterface $client, private readonly CustomerRepositoryInterface $customerRepository, private readonly SerializerInterface $serializer, private readonly PropertiesFactoryInterface $propertiesFactory)
+    {
     }
 
     public function __invoke(SubscribeCustomer $message): void

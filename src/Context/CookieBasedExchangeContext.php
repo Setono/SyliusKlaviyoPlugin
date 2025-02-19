@@ -8,17 +8,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class CookieBasedExchangeContext implements ExchangeContextInterface
 {
-    private ExchangeContextInterface $decorated;
-
-    private RequestStack $requestStack;
-
-    private string $cookieName;
-
-    public function __construct(ExchangeContextInterface $decorated, RequestStack $requestStack, string $cookieName)
+    public function __construct(private readonly ExchangeContextInterface $decorated, private readonly RequestStack $requestStack, private readonly string $cookieName)
     {
-        $this->decorated = $decorated;
-        $this->requestStack = $requestStack;
-        $this->cookieName = $cookieName;
     }
 
     public function getExchange(): ?string

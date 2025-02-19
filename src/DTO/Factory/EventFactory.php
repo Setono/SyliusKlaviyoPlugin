@@ -15,28 +15,8 @@ use Setono\SyliusKlaviyoPlugin\Strategy\TrackingStrategyInterface;
 
 final class EventFactory implements EventFactoryInterface
 {
-    private ClientIdProviderInterface $clientIdProvider;
-
-    private EmailContextInterface $emailContext;
-
-    private ExchangeContextInterface $exchangeContext;
-
-    private TrackingStrategyInterface $trackingStrategy;
-
-    private PropertiesFactoryInterface $propertiesFactory;
-
-    public function __construct(
-        ClientIdProviderInterface $clientIdProvider,
-        EmailContextInterface $emailContext,
-        ExchangeContextInterface $exchangeContext,
-        TrackingStrategyInterface $trackingStrategy,
-        PropertiesFactoryInterface $propertiesFactory,
-    ) {
-        $this->clientIdProvider = $clientIdProvider;
-        $this->emailContext = $emailContext;
-        $this->exchangeContext = $exchangeContext;
-        $this->trackingStrategy = $trackingStrategy;
-        $this->propertiesFactory = $propertiesFactory;
+    public function __construct(private readonly ClientIdProviderInterface $clientIdProvider, private readonly EmailContextInterface $emailContext, private readonly ExchangeContextInterface $exchangeContext, private readonly TrackingStrategyInterface $trackingStrategy, private readonly PropertiesFactoryInterface $propertiesFactory)
+    {
     }
 
     public function create(Properties $properties, CustomerProperties $customerProperties = null): Event

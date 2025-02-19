@@ -9,7 +9,7 @@ use Setono\SyliusKlaviyoPlugin\DTO\Properties\Base;
 
 final class PropertiesFactory implements PropertiesFactoryInterface
 {
-    private ContainerInterface $serviceLocator;
+    private readonly ContainerInterface $serviceLocator;
 
     public function __construct(ContainerInterface $serviceLocator)
     {
@@ -29,14 +29,8 @@ final class PropertiesFactory implements PropertiesFactoryInterface
     private function decorateServiceLocator(ContainerInterface $decorated): ContainerInterface
     {
         return new class($decorated, $this) implements ContainerInterface {
-            private ContainerInterface $decorated;
-
-            private PropertiesFactoryInterface $propertiesFactory;
-
-            public function __construct(ContainerInterface $decorated, PropertiesFactoryInterface $propertiesFactory)
+            public function __construct(private readonly ContainerInterface $decorated, private readonly PropertiesFactoryInterface $propertiesFactory)
             {
-                $this->decorated = $decorated;
-                $this->propertiesFactory = $propertiesFactory;
             }
 
             public function get(string $id)

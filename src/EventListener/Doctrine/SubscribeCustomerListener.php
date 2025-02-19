@@ -15,20 +15,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class SubscribeCustomerListener
 {
-    private MessageBusInterface $commandBus;
-
-    private ChannelContextInterface $channelContext;
-
-    private MemberListRepositoryInterface $memberListRepository;
-
-    public function __construct(
-        MessageBusInterface $commandBus,
-        ChannelContextInterface $channelContext,
-        MemberListRepositoryInterface $memberListRepository,
-    ) {
-        $this->commandBus = $commandBus;
-        $this->channelContext = $channelContext;
-        $this->memberListRepository = $memberListRepository;
+    public function __construct(private readonly MessageBusInterface $commandBus, private readonly ChannelContextInterface $channelContext, private readonly MemberListRepositoryInterface $memberListRepository)
+    {
     }
 
     public function postPersist(PostPersistEventArgs $eventArgs): void
@@ -72,9 +60,7 @@ final class SubscribeCustomerListener
     private function getListIds(): array
     {
         return array_map(
-            static function (MemberListInterface $list): string {
-                return (string) $list->getKlaviyoId();
-            },
+            static fn (MemberListInterface $list): string => (string) $list->getKlaviyoId(),
             $this->memberListRepository->findByChannel($this->channelContext->getChannel()),
         );
     }

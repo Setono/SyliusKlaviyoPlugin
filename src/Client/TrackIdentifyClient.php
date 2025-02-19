@@ -11,16 +11,8 @@ use Webmozart\Assert\Assert;
 
 final class TrackIdentifyClient implements TrackIdentifyClientInterface
 {
-    private RestClientInterface $httpClient;
-
-    private SerializerInterface $serializer;
-
-    public function __construct(
-        RestClientInterface $httpClient,
-        SerializerInterface $serializer,
-    ) {
-        $this->httpClient = $httpClient;
-        $this->serializer = $serializer;
+    public function __construct(private readonly RestClientInterface $httpClient, private readonly SerializerInterface $serializer)
+    {
     }
 
     public function trackEvent(Event $event): void

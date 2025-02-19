@@ -17,14 +17,8 @@ final class SaveEmailSubscriber implements EventSubscriberInterface
 {
     private ?string $email = null;
 
-    private EmailContextInterface $emailContext;
-
-    private string $cookieName;
-
-    public function __construct(EmailContextInterface $emailContext, string $cookieName)
+    public function __construct(private readonly EmailContextInterface $emailContext, private readonly string $cookieName)
     {
-        $this->emailContext = $emailContext;
-        $this->cookieName = $cookieName;
     }
 
     public static function getSubscribedEvents(): array

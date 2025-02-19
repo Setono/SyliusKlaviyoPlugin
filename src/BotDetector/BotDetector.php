@@ -11,14 +11,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class BotDetector implements BotDetectorInterface
 {
-    private RequestStack $requestStack;
-
-    private CacheItemPoolInterface $cache;
-
-    public function __construct(RequestStack $requestStack, CacheItemPoolInterface $cache)
+    public function __construct(private readonly RequestStack $requestStack, private readonly CacheItemPoolInterface $cache)
     {
-        $this->requestStack = $requestStack;
-        $this->cache = $cache;
     }
 
     public function isBot(string $userAgent = null): bool

@@ -26,8 +26,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
  */
 final class PlacedOrderSubscriber extends AbstractEventSubscriber
 {
-    private OrderRepositoryInterface $orderRepository;
-
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
@@ -35,10 +33,9 @@ final class PlacedOrderSubscriber extends AbstractEventSubscriber
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
         BotDetectorInterface $botDetector,
-        OrderRepositoryInterface $orderRepository,
+        private readonly OrderRepositoryInterface $orderRepository,
     ) {
         parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
-        $this->orderRepository = $orderRepository;
     }
 
     public static function getSubscribedEvents(): array

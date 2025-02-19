@@ -13,12 +13,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class UpdateCustomerPropertiesFromOrderSubscriber implements EventSubscriberInterface
 {
-    private PropertiesFactoryInterface $propertiesFactory;
-
-    public function __construct(
-        PropertiesFactoryInterface $propertiesFactory,
-    ) {
-        $this->propertiesFactory = $propertiesFactory;
+    public function __construct(private readonly PropertiesFactoryInterface $propertiesFactory)
+    {
     }
 
     public static function getSubscribedEvents(): array

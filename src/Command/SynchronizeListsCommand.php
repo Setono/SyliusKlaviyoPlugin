@@ -16,13 +16,9 @@ final class SynchronizeListsCommand extends Command
 
     protected static $defaultDescription = 'Synchronize your Klaviyo lists with the local database';
 
-    private ListSynchronizerInterface $listSynchronizer;
-
-    public function __construct(ListSynchronizerInterface $listSynchronizer)
+    public function __construct(private readonly ListSynchronizerInterface $listSynchronizer)
     {
         parent::__construct();
-
-        $this->listSynchronizer = $listSynchronizer;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

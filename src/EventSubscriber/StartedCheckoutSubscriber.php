@@ -19,8 +19,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class StartedCheckoutSubscriber extends AbstractEventSubscriber
 {
-    private CartContextInterface $cartContext;
-
     public function __construct(
         MessageBusInterface $commandBus,
         EventFactoryInterface $eventFactory,
@@ -28,11 +26,9 @@ final class StartedCheckoutSubscriber extends AbstractEventSubscriber
         EventDispatcherInterface $eventDispatcher,
         TrackingStrategyInterface $trackingStrategy,
         BotDetectorInterface $botDetector,
-        CartContextInterface $cartContext,
+        private readonly CartContextInterface $cartContext,
     ) {
         parent::__construct($commandBus, $eventFactory, $propertiesFactory, $eventDispatcher, $trackingStrategy, $botDetector);
-
-        $this->cartContext = $cartContext;
     }
 
     public static function getSubscribedEvents(): array

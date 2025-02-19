@@ -13,11 +13,8 @@ final class StoreExchangeSubscriber implements EventSubscriberInterface
 {
     private const EXCHANGE_QUERY_PARAMETER = '_kx';
 
-    private string $cookieName;
-
-    public function __construct(string $cookieName)
+    public function __construct(private readonly string $cookieName)
     {
-        $this->cookieName = $cookieName;
     }
 
     public static function getSubscribedEvents(): array

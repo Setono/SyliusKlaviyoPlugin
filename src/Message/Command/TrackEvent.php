@@ -8,11 +8,8 @@ use Setono\SyliusKlaviyoPlugin\DTO\Event;
 
 final class TrackEvent implements CommandInterface
 {
-    private Event $event;
-
-    public function __construct(Event $event)
+    public function __construct(private readonly Event $event)
     {
-        $this->event = $event;
     }
 
     public function getEvent(): Event

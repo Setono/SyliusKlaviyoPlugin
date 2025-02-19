@@ -11,8 +11,6 @@ final class Event
 {
     public string $event;
 
-    public CustomerProperties $customerProperties;
-
     public Properties $properties;
 
     /**
@@ -20,12 +18,11 @@ final class Event
      */
     public int $timestamp;
 
-    public function __construct(Properties $properties, CustomerProperties $customerProperties)
+    public function __construct(Properties $properties, public CustomerProperties $customerProperties)
     {
         $now = new \DateTimeImmutable();
 
         $this->event = $properties->event;
-        $this->customerProperties = $customerProperties;
         $this->properties = $properties;
         $this->timestamp = $now->getTimestamp();
 

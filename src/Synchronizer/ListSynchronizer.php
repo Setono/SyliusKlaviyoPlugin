@@ -17,21 +17,12 @@ final class ListSynchronizer implements ListSynchronizerInterface
 {
     private LoggerInterface $logger;
 
-    private RestClientInterface $restClient;
-
-    private MemberListRepositoryInterface $listRepository;
-
-    private FactoryInterface $listFactory;
-
     public function __construct(
-        RestClientInterface $restClient,
-        MemberListRepositoryInterface $listRepository,
-        FactoryInterface $listFactory,
+        private readonly RestClientInterface $restClient,
+        private readonly MemberListRepositoryInterface $listRepository,
+        private readonly FactoryInterface $listFactory,
     ) {
         $this->logger = new NullLogger();
-        $this->restClient = $restClient;
-        $this->listRepository = $listRepository;
-        $this->listFactory = $listFactory;
     }
 
     public function synchronize(): void

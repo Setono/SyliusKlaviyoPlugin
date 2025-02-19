@@ -9,14 +9,8 @@ use Setono\SyliusKlaviyoPlugin\Context\ExchangeContextInterface;
 
 final class TrackWithEmailOrExchangeTrackingStrategy implements TrackingStrategyInterface
 {
-    private EmailContextInterface $emailContext;
-
-    private ExchangeContextInterface $exchangeContext;
-
-    public function __construct(EmailContextInterface $emailContext, ExchangeContextInterface $exchangeContext)
+    public function __construct(private readonly EmailContextInterface $emailContext, private readonly ExchangeContextInterface $exchangeContext)
     {
-        $this->emailContext = $emailContext;
-        $this->exchangeContext = $exchangeContext;
     }
 
     public function track(): bool

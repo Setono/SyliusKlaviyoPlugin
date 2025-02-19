@@ -9,7 +9,7 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Webmozart\Assert\Assert;
 
-final class Item extends Base
+class Item extends Base
 {
     use MoneyFormatterTrait;
 

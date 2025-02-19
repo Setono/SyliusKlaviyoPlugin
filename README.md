@@ -1,7 +1,6 @@
 # Klaviyo plugin for Sylius
 
 [![Latest Version][ico-version]][link-packagist]
-[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
 [![Code Coverage][ico-code-coverage]][link-code-coverage]
@@ -12,10 +11,8 @@ Use this plugin to integrate your store with [Klaviyo](https://www.klaviyo.com).
 
 ### Step 1: Download the plugin
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
-
 ```bash
-$ composer require setono/sylius-klaviyo-plugin
+composer require setono/sylius-klaviyo-plugin
 ```
 
 ### Step 2: Enable the plugin
@@ -71,8 +68,8 @@ Then remember to set these environment variables: `KLAVIYO_PUBLIC_TOKEN` and `KL
 Use Doctrine migrations to create a migration file and update the database.
 
 ```bash
-$ bin/console doctrine:migrations:diff
-$ bin/console doctrine:migrations:migrate
+bin/console doctrine:migrations:diff
+bin/console doctrine:migrations:migrate
 ```
 
 ### Step 6: Using asynchronous transport (optional, but recommended)
@@ -92,11 +89,10 @@ framework:
 ```
 
 ## Usage
-After setup you want to associate channels with lists in Klaviyo. Go to `/admin/klaviyo/member-lists/`
+After setup, you want to associate channels with lists in Klaviyo. Go to `/admin/klaviyo/member-lists/`
 and synchronize the lists. After that edit the lists and enable channels on the lists.
 
 [ico-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/stable
-[ico-unstable-version]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-klaviyo-plugin/license
 [ico-github-actions]: https://github.com/Setono/SyliusKlaviyoPlugin/workflows/build/badge.svg
 [ico-code-coverage]: https://codecov.io/gh/Setono/SyliusKlaviyoPlugin/branch/master/graph/badge.svg

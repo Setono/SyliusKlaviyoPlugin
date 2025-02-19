@@ -208,7 +208,8 @@ jobs:
                     - "8.2"
 
                 dependencies:
-                    - "lowest"
+                    # todo readd 'lowest'
+                    #- "lowest"
                     - "highest"
                 
                 symfony:

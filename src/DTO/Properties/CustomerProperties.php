@@ -29,7 +29,7 @@ class CustomerProperties extends Base
 
     public ?string $image = null;
 
-    /** @var null|array<array-key, mixed> */
+    /** @var array<array-key, mixed>|null */
     public ?array $properties = null;
 
     public ?Subscriptions $subscriptions = null;
@@ -71,7 +71,7 @@ class CustomerProperties extends Base
             try {
                 return (string) PhoneNumber::parse(
                     $input,
-                    $addressCountryCode
+                    $addressCountryCode,
                 );
             } catch (PhoneNumberParseException) {
                 return null;

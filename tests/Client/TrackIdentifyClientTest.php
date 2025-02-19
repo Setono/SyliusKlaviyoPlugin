@@ -90,7 +90,7 @@ final class TrackIdentifyClientTest extends TestCase
             self::assertSame('POST', $response->getRequestMethod());
             self::assertSame('https://a.klaviyo.com/api/events/', $response->getRequestUrl());
             self::assertContains('Content-Type: application/json', $requestHeaders);
-            self::assertSame('{"data":{"event":"Viewed Product","customer_properties":{"email":"test@klaviyo.com","properties":[]},"properties":{"ProductName":"Black T-shirt","SKU":"BLACK-T-SHIRT","Categories":["T-shirts"],"ImageURL":"https:\/\/example.com\/images\/black-t-shirt.jpg","URL":"https:\/\/example.com\/t-shirts\/black-t-shirt.html","Brand":"Diesel","Price":123.95,"CompareAtPrice":234.45},"time":1631101604}}', $requestBody);
+            self::assertSame('{"data":{"event":"Viewed Product","customer_properties":{"email":"test@klaviyo.com"},"properties":{"ProductName":"Black T-shirt","SKU":"BLACK-T-SHIRT","Categories":["T-shirts"],"ImageURL":"https:\/\/example.com\/images\/black-t-shirt.jpg","URL":"https:\/\/example.com\/t-shirts\/black-t-shirt.html","Brand":"Diesel","Price":123.95,"CompareAtPrice":234.45},"time":1631101604}}', $requestBody);
         }
     }
 

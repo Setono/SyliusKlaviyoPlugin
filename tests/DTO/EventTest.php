@@ -30,9 +30,7 @@ final class EventTest extends DTOTestCase
                 'profile' => [
                     'data' => [
                         'type' => 'profile',
-                        'attributes' => [
-                            'properties' => [],
-                        ],
+                        'attributes' => [],
                     ],
                 ],
                 'metric' => [
@@ -45,7 +43,7 @@ final class EventTest extends DTOTestCase
                 ],
                 'unique_id' => 'event_id',
                 'time' => date('c', 1631103497),
-                'value' => 42,
+                'value' => 42.0,
                 'properties' => [
                     'Categories' => [],
                 ],

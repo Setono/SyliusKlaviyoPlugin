@@ -49,7 +49,6 @@ final class CustomerPropertiesTest extends DTOTestCase
                   'zip' => '98612',
                 ],
                 'email' => 'john.doe@klaviyo.com',
-                'properties' => [],
             ],
         ];
     }

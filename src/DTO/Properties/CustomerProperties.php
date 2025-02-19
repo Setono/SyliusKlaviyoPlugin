@@ -27,8 +27,8 @@ class CustomerProperties extends Base
 
     public ?string $image = null;
 
-    /** @var array<array-key, mixed> */
-    public array $properties = [];
+    /** @var null|array<array-key, mixed> */
+    public ?array $properties = null;
 
     public ?Subscriptions $subscriptions = null;
 

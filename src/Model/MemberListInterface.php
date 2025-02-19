@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusKlaviyoPlugin\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 interface MemberListInterface extends ResourceInterface, KlaviyoResourceInterface
 {

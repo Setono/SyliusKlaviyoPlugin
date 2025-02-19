@@ -10,7 +10,7 @@ use Setono\SyliusKlaviyoPlugin\Client\RestClientInterface;
 use Setono\SyliusKlaviyoPlugin\DTO\Response\ListData;
 use Setono\SyliusKlaviyoPlugin\Model\MemberListInterface;
 use Setono\SyliusKlaviyoPlugin\Repository\MemberListRepositoryInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
 final class ListSynchronizer implements ListSynchronizerInterface

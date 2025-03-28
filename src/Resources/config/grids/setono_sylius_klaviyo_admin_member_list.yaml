@@ -9,6 +9,7 @@ sylius_grid:
                 name:
                     type: string
                     label: sylius.ui.name
+            filters: { }
             actions:
                 item:
                     update:

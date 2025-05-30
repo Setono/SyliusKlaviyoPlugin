@@ -21,11 +21,6 @@
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
 
-        <attribute name="phoneNumber" serialized-name="phone_number">
-            <group>setono:sylius-klaviyo:event</group>
-            <group>setono:sylius-klaviyo:subscription</group>
-        </attribute>
-
         <attribute name="location" serialized-name="location">
             <group>setono:sylius-klaviyo:event</group>
         </attribute>
